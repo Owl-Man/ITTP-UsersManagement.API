@@ -2,6 +2,25 @@
   "version": 3,
   "targets": {
     "net9.0": {
+      "Microsoft.AspNetCore.OpenApi/9.0.4": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.OpenApi": "1.6.17"
+        },
+        "compile": {
+          "lib/net9.0/Microsoft.AspNetCore.OpenApi.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.AspNetCore.OpenApi.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Microsoft.EntityFrameworkCore/9.0.4": {
         "type": "package",
         "dependencies": {
@@ -193,6 +212,35 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
+      "Microsoft.OpenApi/1.6.17": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.OpenApi.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.OpenApi.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "ITTP.UsersManagement.API/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.OpenApi": "9.0.4"
+        },
+        "compile": {
+          "bin/placeholder/ITTP.UsersManagement.API.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ITTP.UsersManagement.API.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "ITTP.UsersManagement.API.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
@@ -206,6 +254,22 @@
     }
   },
   "libraries": {
+    "Microsoft.AspNetCore.OpenApi/9.0.4": {
+      "sha512": "GfZWPbZz1aAtEO3wGCkpeyRc0gzr/+VRHnUgY/YjqVPDlHbeKWCXw3IxKarQdo9myC2O1QBf652Mo50QqbXYRg==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.openapi/9.0.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net9.0/Microsoft.AspNetCore.OpenApi.dll",
+        "lib/net9.0/Microsoft.AspNetCore.OpenApi.xml",
+        "microsoft.aspnetcore.openapi.9.0.4.nupkg.sha512",
+        "microsoft.aspnetcore.openapi.nuspec"
+      ]
+    },
     "Microsoft.EntityFrameworkCore/9.0.4": {
       "sha512": "+5IAX0aicQYCRfN4pAjad+JPwdEYoVEM3Z1Cl8/EiEv3FVHQHdd8TJQpQIslQDDQS/UsUMb0MsOXwqOh+TJtRw==",
       "type": "package",
@@ -541,6 +605,26 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "Microsoft.OpenApi/1.6.17": {
+      "sha512": "Le+kehlmrlQfuDFUt1zZ2dVwrhFQtKREdKBo+rexOwaCoYP0/qpgT9tLxCsZjsgR5Itk1UKPcbgO+FyaNid/bA==",
+      "type": "package",
+      "path": "microsoft.openapi/1.6.17",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/netstandard2.0/Microsoft.OpenApi.dll",
+        "lib/netstandard2.0/Microsoft.OpenApi.pdb",
+        "lib/netstandard2.0/Microsoft.OpenApi.xml",
+        "microsoft.openapi.1.6.17.nupkg.sha512",
+        "microsoft.openapi.nuspec"
+      ]
+    },
+    "ITTP.UsersManagement.API/1.0.0": {
+      "type": "project",
+      "path": "../ITTP.UsersManagement.API/ITTP.UsersManagement.API.csproj",
+      "msbuildProject": "../ITTP.UsersManagement.API/ITTP.UsersManagement.API.csproj"
+    },
     "ITTP.UsersManagement.API.Core/1.0.0": {
       "type": "project",
       "path": "../ITTP.UsersManagement.API.Core/ITTP.UsersManagement.API.Core.csproj",
@@ -549,6 +633,7 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "ITTP.UsersManagement.API >= 1.0.0",
       "ITTP.UsersManagement.API.Core >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 9.0.4"
     ]
@@ -580,6 +665,9 @@
           "projectReferences": {
             "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/ITTP.UsersManagement.API.Core.csproj": {
               "projectPath": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/ITTP.UsersManagement.API.Core.csproj"
+            },
+            "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API/ITTP.UsersManagement.API.csproj": {
+              "projectPath": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API/ITTP.UsersManagement.API.csproj"
             }
           }
         }

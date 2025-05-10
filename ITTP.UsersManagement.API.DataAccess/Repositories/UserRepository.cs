@@ -1,3 +1,4 @@
+using ITTP.UsersManagement.API.Core;
 using ITTP.UsersManagement.API.Core.Models;
 using ITTP.UsersManagement.API.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -38,7 +39,7 @@ public class UserRepository
         }
         catch (Exception ex)
         {
-            string error = $"Error with creating user {login}";
+            string error = ErrorForm.UserCreateError(login);
             
             _logger.LogError(ex, error);
             return (Guid.Empty, error);
@@ -66,7 +67,7 @@ public class UserRepository
         }
         catch (Exception ex)
         {
-            string error = $"No user found";
+            string error = ErrorForm.NoUsersFound(id);
             
             _logger.LogError(ex, error);
             return (Guid.Empty, error);
@@ -92,7 +93,7 @@ public class UserRepository
         }
         catch (Exception ex)
         {
-            string error = $"No user found";
+            string error = ErrorForm.NoUsersFound(id);
             
             _logger.LogError(ex, error);
             return (Guid.Empty, error);
@@ -118,7 +119,7 @@ public class UserRepository
         }
         catch (Exception ex)
         {
-            string error = $"No user found";
+            string error = ErrorForm.NoUsersFound(id);
             
             _logger.LogError(ex, error);
             return (Guid.Empty, error);
@@ -132,13 +133,13 @@ public class UserRepository
             UserEntity userEntity = _context.Users.FirstOrDefault(u => u.Login == login);
         
             if (userEntity == null)
-                return (null, "No user found");
+                return (null, ErrorForm.NoUsersFound(login));
         
             return (userEntity.ToUser(), string.Empty);
         }
         catch (Exception ex)
         {
-            string error = $"No user found";
+            string error = ErrorForm.NoUsersFound(login);
             
             _logger.LogError(ex, error);
             return (null, error);
@@ -152,13 +153,13 @@ public class UserRepository
             UserEntity userEntity = _context.Users.FirstOrDefault(u => u.Login == login && u.Password == password);
         
             if (userEntity == null)
-                return (null, "No user found");
+                return (null, ErrorForm.NoUsersFound(login));
         
             return (userEntity.ToUser(), string.Empty);
         }
         catch (Exception ex)
         {
-            string error = $"No user found";
+            string error = ErrorForm.NoUsersFound(login);
             
             _logger.LogError(ex, error);
             return (null, error);
@@ -204,7 +205,7 @@ public class UserRepository
         }
         catch (Exception ex)
         {
-            string error = $"No user found";
+            string error = ErrorForm.NoUsersFound(id);
             
             _logger.LogError(ex, error);
             return (Guid.Empty, error);
@@ -225,7 +226,7 @@ public class UserRepository
         }
         catch (Exception ex)
         {
-            string error = $"No user found";
+            string error = ErrorForm.NoUsersFound(id);
             
             _logger.LogError(ex, error);
             return (Guid.Empty, error);
@@ -246,7 +247,7 @@ public class UserRepository
         }
         catch (Exception ex)
         {
-            string error = $"No user found";
+            string error = ErrorForm.NoUsersFound(id);
             
             _logger.LogError(ex, error);
             return (Guid.Empty, error);
