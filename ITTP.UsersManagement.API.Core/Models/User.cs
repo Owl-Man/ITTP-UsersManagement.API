@@ -48,7 +48,8 @@ public class User
         return user;
     }
 
-    public static bool ValidateData(string login, string password, string name, int gender, out string validateError)
+    public static bool ValidateData(out string validateError, string login = "def", string password = "def",
+        string name = "def", int gender = 2)
     {
         validateError = string.Empty;
         
