@@ -16,7 +16,7 @@ public class UserConfiguration : IEntityTypeConfiguration<UserEntity>
             .HasAnnotation(
                 "RegularExpression",
                 new RegularExpressionAttribute(@"^[a-zA-Z0-9]+$")
-                    { ErrorMessage = "запрещены все символы кроме латинских букв и цифр" });
+                    { ErrorMessage = "can only contain Latin letters and numbers" });
         
         builder.HasIndex(u => u.Login)
             .IsUnique();
@@ -26,35 +26,20 @@ public class UserConfiguration : IEntityTypeConfiguration<UserEntity>
             .HasAnnotation(
                 "RegularExpression",
                 new RegularExpressionAttribute(@"^[a-zA-Z0-9]+$")
-                    { ErrorMessage = "запрещены все символы кроме латинских букв и цифр" });
+                    { ErrorMessage = "can only contain Latin letters and numbers" });
 
         builder.Property(u => u.Name)
             .IsRequired()
             .HasAnnotation(
                 "RegularExpression",
                 new RegularExpressionAttribute(@"^[a-zA-Zа-яА-Я]+$")
-                    { ErrorMessage = "запрещены все символы кроме латинских букв и цифр" });
+                    { ErrorMessage = "can only contain Latin letters and numbers" });
 
         builder.Property(u => u.Gender)
             .IsRequired()
             .HasAnnotation("Range", new RangeAttribute(0, 2));
 
-        builder.Property(u => u.Birthday)
-            .IsRequired(false);
-
         builder.Property(u => u.Admin)
-            .IsRequired();
-
-        builder.Property(u => u.CreatedOn)
-            .IsRequired();
-
-        builder.Property(u => u.CreatedBy)
-            .IsRequired();
-
-        builder.Property(u => u.ModifiedOn)
-            .IsRequired();
-
-        builder.Property(u => u.ModifiedBy)
             .IsRequired();
     }
 }

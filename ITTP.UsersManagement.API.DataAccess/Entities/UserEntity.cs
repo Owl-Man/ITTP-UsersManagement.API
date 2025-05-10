@@ -7,7 +7,7 @@ public class UserEntity
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public Guid Id { get; set; }
+    public Guid Id { get; set; } 
     
     public string Login { get; set; }
     public string Password { get; set; }
@@ -21,6 +21,6 @@ public class UserEntity
     public string CreatedBy { get; set; }
     public DateTime ModifiedOn { get; set; }
     public string ModifiedBy { get; set; }
-    public DateTime RevokedOn { get; set; }
+    public DateTime? RevokedOn { get; set; }
     public string RevokedBy { get; set; }
 }
