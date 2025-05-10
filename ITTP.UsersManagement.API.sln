@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITTP.UsersManagement.API", "ITTP.UsersManagement.API\ITTP.UsersManagement.API.csproj", "{508BCD20-5AD6-41E1-929A-23FD5A717AB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITTP.UsersManagement.API.Core", "ITTP.UsersManagement.API.Core\ITTP.UsersManagement.API.Core.csproj", "{C7D9C13A-E1E0-4348-9729-0B1330DAD418}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITTP.UsersManagement.API.DataAccess", "ITTP.UsersManagement.API.DataAccess\ITTP.UsersManagement.API.DataAccess.csproj", "{D9B99B4E-3A4C-4BA9-9195-B96DCEBDE035}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITTP.UsersManagement.API.Application", "ITTP.UsersManagement.API.Application\ITTP.UsersManagement.API.Application.csproj", "{61D52519-E7AF-4870-BCF9-EDE2FEF5F404}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{508BCD20-5AD6-41E1-929A-23FD5A717AB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{508BCD20-5AD6-41E1-929A-23FD5A717AB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{508BCD20-5AD6-41E1-929A-23FD5A717AB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{508BCD20-5AD6-41E1-929A-23FD5A717AB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7D9C13A-E1E0-4348-9729-0B1330DAD418}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7D9C13A-E1E0-4348-9729-0B1330DAD418}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7D9C13A-E1E0-4348-9729-0B1330DAD418}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7D9C13A-E1E0-4348-9729-0B1330DAD418}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9B99B4E-3A4C-4BA9-9195-B96DCEBDE035}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9B99B4E-3A4C-4BA9-9195-B96DCEBDE035}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9B99B4E-3A4C-4BA9-9195-B96DCEBDE035}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9B99B4E-3A4C-4BA9-9195-B96DCEBDE035}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61D52519-E7AF-4870-BCF9-EDE2FEF5F404}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61D52519-E7AF-4870-BCF9-EDE2FEF5F404}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61D52519-E7AF-4870-BCF9-EDE2FEF5F404}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61D52519-E7AF-4870-BCF9-EDE2FEF5F404}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "mWxeTms2Y3w=",
+  "success": true,
+  "projectFilePath": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API/ITTP.UsersManagement.API.csproj",
+  "expectedPackageFiles": [
+    "/home/owl/.nuget/packages/microsoft.aspnetcore.openapi/9.0.4/microsoft.aspnetcore.openapi.9.0.4.nupkg.sha512",
+    "/home/owl/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
