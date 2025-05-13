@@ -1,4 +1,6 @@
 using ITTP.UsersManagement.API.Core;
+using ITTP.UsersManagement.API.Core.DTOs;
+using ITTP.UsersManagement.API.Core.Interfaces;
 using ITTP.UsersManagement.API.Core.Models;
 using ITTP.UsersManagement.API.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -6,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ITTP.UsersManagement.API.DataAccess.Repositories;
 
-public class UserRepository
+public class UserRepository : IUserRepository
 {
     private readonly UsersManagementDbContext _context;
     private readonly ILogger<UserRepository> _logger;
@@ -17,42 +19,40 @@ public class UserRepository
         _logger = logger;
     }
 
-    public (Guid id, string error) Create(string login, string password, string name, int gender, DateTime? birthday, 
+    public RetrievedId Create(string login, string password, string name, int gender, DateTime? birthday, 
         bool admin, string createdBy)
     {
         try
         {
             User.ValidateData(out string validateError, login, password, name, gender);
         
-            if (!string.IsNullOrEmpty(validateError)) return (Guid.Empty, validateError);
+            if (!string.IsNullOrEmpty(validateError)) return new RetrievedId(Guid.Empty, validateError);
         
             UserEntity userEntity = new UserEntity();
-        
-            User user = User.CreateNew(userEntity.Id, login, password, name, gender, birthday, admin, createdBy);
 
-            userEntity = user.ToEntity();
+            userEntity = User.CreateNew(userEntity.Id, login, password, name, gender, birthday, admin, createdBy).ToEntity();
         
             _context.Users.Add(userEntity);
             _context.SaveChanges();
         
-            return (user.Id, string.Empty);
+            return new RetrievedId(userEntity.Id, string.Empty);
         }
         catch (Exception ex)
         {
             string error = ErrorForm.UserCreateError(login);
             
             _logger.LogError(ex, error);
-            return (Guid.Empty, error);
+            return new RetrievedId(Guid.Empty, error);
         }
     }
 
-    public (Guid id, string error) UpdatePersonalInfo(Guid id, string name, int gender, DateTime? birthday, string modifiedBy)
+    public RetrievedId UpdatePersonalInfo(Guid id, string name, int gender, DateTime? birthday, string modifiedBy)
     {
         try
         {
             User.ValidateData(out var validateError, name: name, gender:gender);
             
-            if (!string.IsNullOrEmpty(validateError)) return (Guid.Empty, validateError);
+            if (!string.IsNullOrEmpty(validateError)) return new RetrievedId(Guid.Empty, validateError);
 
             _context.Users
                 .Where(u => u.Id == id)
@@ -63,24 +63,24 @@ public class UserRepository
                     .SetProperty(u => u.ModifiedBy, u => modifiedBy)
                     .SetProperty(u => u.ModifiedOn, u => DateTime.UtcNow));
         
-            return (id, string.Empty);
+            return new RetrievedId(id, string.Empty);
         }
         catch (Exception ex)
         {
             string error = ErrorForm.NoUsersFound(id);
             
             _logger.LogError(ex, error);
-            return (Guid.Empty, error);
+            return new RetrievedId(Guid.Empty, error);
         }
     }
     
-    public (Guid id, string error) UpdateLogin(Guid id, string login, string modifiedBy)
+    public RetrievedId UpdateLogin(Guid id, string login, string modifiedBy)
     {
         try
         {
             User.ValidateData(out var validateError, login: login);
             
-            if (!string.IsNullOrEmpty(validateError)) return (Guid.Empty, validateError);
+            if (!string.IsNullOrEmpty(validateError)) return new RetrievedId(Guid.Empty, validateError);
 
             _context.Users
                 .Where(u => u.Id == id)
@@ -89,24 +89,24 @@ public class UserRepository
                     .SetProperty(u => u.ModifiedBy, u => modifiedBy)
                     .SetProperty(u => u.ModifiedOn, u => DateTime.UtcNow));
         
-            return (id, string.Empty);
+            return new RetrievedId(id, string.Empty);
         }
         catch (Exception ex)
         {
             string error = ErrorForm.NoUsersFound(id);
             
             _logger.LogError(ex, error);
-            return (Guid.Empty, error);
+            return new RetrievedId(Guid.Empty, error);
         }
     }
     
-    public (Guid id, string error) UpdatePassword(Guid id, string password, string modifiedBy)
+    public RetrievedId UpdatePassword(Guid id, string password, string modifiedBy)
     {
         try
         {
             User.ValidateData(out var validateError, password: password);
             
-            if (!string.IsNullOrEmpty(validateError)) return (Guid.Empty, validateError);
+            if (!string.IsNullOrEmpty(validateError)) return new RetrievedId(Guid.Empty, validateError);
 
             _context.Users
                 .Where(u => u.Id == id)
@@ -115,54 +115,54 @@ public class UserRepository
                     .SetProperty(u => u.ModifiedBy, u => modifiedBy)
                     .SetProperty(u => u.ModifiedOn, u => DateTime.UtcNow));
         
-            return (id, string.Empty);
+            return new RetrievedId(id, string.Empty);
         }
         catch (Exception ex)
         {
             string error = ErrorForm.NoUsersFound(id);
             
             _logger.LogError(ex, error);
-            return (Guid.Empty, error);
+            return new RetrievedId(Guid.Empty, error);
         }
     }
 
-    public (User? user, string error) GetByLogin(string login)
+    public RetrievedUser GetByLogin(string login)
     {
         try
         {
             UserEntity userEntity = _context.Users.FirstOrDefault(u => u.Login == login);
         
             if (userEntity == null)
-                return (null, ErrorForm.NoUsersFound(login));
+                return new RetrievedUser(null, ErrorForm.NoUsersFound(login));
         
-            return (userEntity.ToUser(), string.Empty);
+            return new RetrievedUser(userEntity.ToUser(), string.Empty);
         }
         catch (Exception ex)
         {
             string error = ErrorForm.NoUsersFound(login);
             
             _logger.LogError(ex, error);
-            return (null, error);
+            return new RetrievedUser(null, error);
         }
     }
 
-    public (User? user, string error) GetByLoginAndPassword(string login, string password)
+    public RetrievedUser GetByLoginAndPassword(string login, string password)
     {
         try
         {
             UserEntity userEntity = _context.Users.FirstOrDefault(u => u.Login == login && u.Password == password);
         
             if (userEntity == null)
-                return (null, ErrorForm.NoUsersFound(login));
+                return new RetrievedUser(null, ErrorForm.NoUsersFound(login));
         
-            return (userEntity.ToUser(), string.Empty);
+            return new RetrievedUser(userEntity.ToUser(), string.Empty);
         }
         catch (Exception ex)
         {
             string error = ErrorForm.NoUsersFound(login);
             
             _logger.LogError(ex, error);
-            return (null, error);
+            return new RetrievedUser(null, error);
         }
     }
 
@@ -180,10 +180,13 @@ public class UserRepository
         return users;
     }
 
-    public List<User> GetUsersOlderThan(DateTime date)
+    public List<User> GetUsersOlderThan(int age)
     {
+        DateTime today = DateTime.Today;
+        
         List<UserEntity> userEntity = _context.Users
-            .Where(u => u.RevokedOn == null && u.Birthday != null && u.Birthday >= date)
+            .Where(u => u.RevokedOn == null && u.Birthday != null &&
+                        today.Year - u.Birthday.Value.Year - (u.Birthday.Value.Date > today.AddYears(-(today.Year - u.Birthday.Value.Year)) ? 1 : 0) >= age)
             .ToList();
         
         List<User> users = userEntity
@@ -192,8 +195,9 @@ public class UserRepository
 
         return users;
     }
-
-    public (Guid id, string error) DeleteUserForce(Guid id)
+    
+    
+    public RetrievedId DeleteUserForce(Guid id)
     {
         try
         {
@@ -201,18 +205,18 @@ public class UserRepository
                 .Where(u => u.Id == id)
                 .ExecuteDelete();
         
-            return (id, string.Empty);
+            return new RetrievedId(id, string.Empty);
         }
         catch (Exception ex)
         {
             string error = ErrorForm.NoUsersFound(id);
             
             _logger.LogError(ex, error);
-            return (Guid.Empty, error);
+            return new RetrievedId(Guid.Empty, error);
         }
     }
     
-    public (Guid id, string error) DeleteUser(Guid id, string revokedBy)
+    public RetrievedId DeleteUser(Guid id, string revokedBy)
     {
         try
         {
@@ -222,18 +226,18 @@ public class UserRepository
                     .SetProperty(u => u.RevokedBy, u => revokedBy)
                     .SetProperty(u => u.RevokedOn, u => DateTime.UtcNow));
         
-            return (id, string.Empty);
+            return new RetrievedId(id, string.Empty);
         }
         catch (Exception ex)
         {
             string error = ErrorForm.NoUsersFound(id);
             
             _logger.LogError(ex, error);
-            return (Guid.Empty, error);
+            return new RetrievedId(Guid.Empty, error);
         }
     }
 
-    public (Guid id, string error) RecoverUser(Guid id)
+    public RetrievedId RestoreUser(Guid id)
     {
         try
         {
@@ -243,14 +247,14 @@ public class UserRepository
                     .SetProperty(u => u.RevokedBy, u => string.Empty)
                     .SetProperty(u => u.RevokedOn, u => null));
         
-            return (id, string.Empty);
+            return new RetrievedId(id, string.Empty);
         }
         catch (Exception ex)
         {
             string error = ErrorForm.NoUsersFound(id);
             
             _logger.LogError(ex, error);
-            return (Guid.Empty, error);
+            return new RetrievedId(Guid.Empty, error);
         }
     }
 }

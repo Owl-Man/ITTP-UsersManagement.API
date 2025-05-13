@@ -8,6 +8,14 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.4"/>
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="8.1.1" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="8.1.1" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="8.1.1" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\ITTP.UsersManagement.API.Application\ITTP.UsersManagement.API.Application.csproj" />
+      <ProjectReference Include="..\ITTP.UsersManagement.API.DataAccess\ITTP.UsersManagement.API.DataAccess.csproj" />
     </ItemGroup>
 
 </Project>

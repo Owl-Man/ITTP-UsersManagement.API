@@ -12,7 +12,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ITTP.UsersManagement.API.Core\ITTP.UsersManagement.API.Core.csproj" />
-      <ProjectReference Include="..\ITTP.UsersManagement.API\ITTP.UsersManagement.API.csproj" />
     </ItemGroup>
 
 </Project>
