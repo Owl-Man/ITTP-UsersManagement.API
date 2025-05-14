@@ -1,5 +1,5 @@
-using ITTP.UsersManagement.API.Application;
 using ITTP.UsersManagement.API.Application.Services;
+using ITTP.UsersManagement.API.Core;
 using ITTP.UsersManagement.API.Core.DTOs;
 using ITTP.UsersManagement.API.Core.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -42,11 +42,11 @@ namespace UserManagementApi.Controllers
 
         [HttpPut("{login}")]
         [Authorize]
-        public IActionResult UpdateUser(string login, [FromBody] UpdateUserInfoDto infoDto)
+        public IActionResult UpdateUser(string login, [FromBody] UserPersonalInfoDto personalInfoDto)
         {
             string? currentUser = User.Identity.Name;
             
-            RetrievedId retrievedId = _userService.UpdatePersonalInfo(login, infoDto.Name, infoDto.Gender, infoDto.Birthday, currentUser);
+            RetrievedId retrievedId = _userService.UpdatePersonalInfo(login, personalInfoDto.Name, personalInfoDto.Gender, personalInfoDto.Birthday, currentUser);
             
             if (!string.IsNullOrEmpty(retrievedId.error)) return BadRequest(retrievedId.error);
             
@@ -90,20 +90,24 @@ namespace UserManagementApi.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult GetUserByLogin(string login)
         {
-            RetrievedUser retrievedUser = _userService.GetUserByLogin(login);
+            string? currentUser = User.Identity.Name;
+            
+            RetrievedUser retrievedUser = _userService.GetUserByLogin(login, currentUser);
             
             if (!string.IsNullOrEmpty(retrievedUser.error)) return BadRequest(retrievedUser.error);
+
+            UserPersonalInfoDto userPersonalInfoDto = retrievedUser.user.ToUserPersonalInfoDto();
             
-            return Ok(retrievedUser);
+            return Ok(userPersonalInfoDto);
         }
 
         [HttpGet("{login}/getByLoginAndPassword")]
-        [Authorize]
-        public IActionResult GetUserByLoginAndPassword(string login, string password)
+        [Authorize(Roles = "User")]
+        public IActionResult GetUserByLoginAndPassword([FromBody] UserLoginDto userLoginDto)
         {
             string? currentUser = User.Identity.Name;
             
-            RetrievedUser retrievedUser = _userService.GetByLoginAndPassword(login, password, currentUser);
+            RetrievedUser retrievedUser = _userService.GetByLoginAndPassword(userLoginDto.Login, userLoginDto.Password, currentUser);
             
             if (!string.IsNullOrEmpty(retrievedUser.error)) return BadRequest(retrievedUser.error);
             

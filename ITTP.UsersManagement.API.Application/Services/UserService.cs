@@ -27,20 +27,17 @@ public class UserService
     public RetrievedId UpdatePersonalInfo(string login, string name, int gender, DateTime? birthday,
         string modifiedBy)
     {
-        RetrievedUser retrievedUser = _userRepository.GetByLogin(login);
+        RetrievedUser retrievedUser = TryGetUserWithAccess(login, modifiedBy, true);
 
         if (!string.IsNullOrEmpty(retrievedUser.error))
             return new RetrievedId(Guid.Empty, retrievedUser.error);
-        
-        if (retrievedUser.user.Login != modifiedBy && modifiedBy != "admin")
-            return new RetrievedId(Guid.Empty, ErrorForm.AccessError(login));
             
         return _userRepository.UpdatePersonalInfo(retrievedUser.user.Id, name, gender, birthday, modifiedBy);
     }
 
     public RetrievedId UpdateLogin(string login, string newLogin, string modifiedBy)
     {
-        RetrievedUser retrievedUser = _userRepository.GetByLogin(login);
+        RetrievedUser retrievedUser = TryGetUserWithAccess(login, modifiedBy, true);
 
         if (!string.IsNullOrEmpty(retrievedUser.error))
             return new RetrievedId(Guid.Empty, retrievedUser.error);
@@ -50,27 +47,22 @@ public class UserService
 
     public RetrievedId UpdatePassword(string login, string password, string modifiedBy)
     {
-        RetrievedUser retrievedUser = _userRepository.GetByLogin(login);
+        RetrievedUser retrievedUser = TryGetUserWithAccess(login, modifiedBy, true);
 
         if (!string.IsNullOrEmpty(retrievedUser.error))
             return new RetrievedId(Guid.Empty, retrievedUser.error);
         
         return _userRepository.UpdatePassword(retrievedUser.user.Id, password, modifiedBy);
     }
+    
+    public RetrievedUser GetUserByLogin(string login, string requestedBy)
+    {
+        return TryGetUserWithAccess(login, requestedBy, true);
+    }
 
     public RetrievedUser GetByLoginAndPassword(string login, string password, string requestedBy)
     {
-        RetrievedUser retrievedUser = _userRepository.GetByLoginAndPassword(login, password);
-        
-        if (retrievedUser.user != null && retrievedUser.user.Login != requestedBy)
-            return new RetrievedUser(null, ErrorForm.AccessError(login));
-
-        return retrievedUser;
-    }
-    
-    public RetrievedUser GetUserByLogin(string login)
-    {
-        return _userRepository.GetByLogin(login);
+        return TryGetUserWithAccess(login,  requestedBy, false, password);
     }
 
     public List<User> GetActiveUsers()
@@ -111,5 +103,21 @@ public class UserService
             return new RetrievedId(Guid.Empty, retrievedUser.error);
         
         return _userRepository.RestoreUser(retrievedUser.user.Id);
+    }
+
+    private RetrievedUser TryGetUserWithAccess(string login, string requestedByUserLogin, bool isAdminHaveAccess, string password="")
+    {
+        RetrievedUser retrievedUser;
+        
+        retrievedUser = string.IsNullOrEmpty(password) ? _userRepository.GetByLogin(login) : _userRepository.GetByLoginAndPassword(login, password);
+        
+        if (!string.IsNullOrEmpty(retrievedUser.error))
+            return new RetrievedUser(null,  retrievedUser.error);
+        
+        if (retrievedUser.user.Login != requestedByUserLogin && retrievedUser.user.RevokedOn != null 
+                                                           && !isAdminHaveAccess && requestedByUserLogin != "admin")
+            return new RetrievedUser(null, ErrorForm.AccessError(login));
+        
+        return retrievedUser;
     }
 }

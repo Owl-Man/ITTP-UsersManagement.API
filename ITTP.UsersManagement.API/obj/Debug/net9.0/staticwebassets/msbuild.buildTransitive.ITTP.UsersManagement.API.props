@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/ITTP.UsersManagement.API.props" />
+</Project>

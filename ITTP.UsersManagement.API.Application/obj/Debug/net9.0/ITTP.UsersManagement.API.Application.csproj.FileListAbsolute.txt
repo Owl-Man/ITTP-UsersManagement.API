@@ -1,0 +1,16 @@
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/bin/Debug/net9.0/ITTP.UsersManagement.API.Application.deps.json
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/bin/Debug/net9.0/ITTP.UsersManagement.API.Application.dll
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/bin/Debug/net9.0/ITTP.UsersManagement.API.Application.pdb
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/bin/Debug/net9.0/ITTP.UsersManagement.API.Core.dll
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/bin/Debug/net9.0/ITTP.UsersManagement.API.Core.pdb
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/obj/Debug/net9.0/ITTP.UsersManagement.API.Application.csproj.AssemblyReference.cache
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/obj/Debug/net9.0/ITTP.UsersManagement.API.Application.GeneratedMSBuildEditorConfig.editorconfig
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/obj/Debug/net9.0/ITTP.UsersManagement.API.Application.AssemblyInfoInputs.cache
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/obj/Debug/net9.0/ITTP.UsersManagement.API.Application.AssemblyInfo.cs
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/obj/Debug/net9.0/ITTP.UsersManagement.API.Application.csproj.CoreCompileInputs.cache
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/obj/Debug/net9.0/ITTP.UsersManagement.API.Application.sourcelink.json
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/obj/Debug/net9.0/ITTP.Use.B8DF53EE.Up2Date
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/obj/Debug/net9.0/ITTP.UsersManagement.API.Application.dll
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/obj/Debug/net9.0/refint/ITTP.UsersManagement.API.Application.dll
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/obj/Debug/net9.0/ITTP.UsersManagement.API.Application.pdb
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/obj/Debug/net9.0/ref/ITTP.UsersManagement.API.Application.dll

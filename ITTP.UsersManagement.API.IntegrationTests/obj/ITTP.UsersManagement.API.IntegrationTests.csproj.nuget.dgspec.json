@@ -1,0 +1,347 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.IntegrationTests/ITTP.UsersManagement.API.IntegrationTests.csproj": {}
+  },
+  "projects": {
+    "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/ITTP.UsersManagement.API.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/ITTP.UsersManagement.API.Application.csproj",
+        "projectName": "ITTP.UsersManagement.API.Application",
+        "projectPath": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/ITTP.UsersManagement.API.Application.csproj",
+        "packagesPath": "/home/owl/.nuget/packages/",
+        "outputPath": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/owl/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/ITTP.UsersManagement.API.Core.csproj": {
+                "projectPath": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/ITTP.UsersManagement.API.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Swashbuckle.AspNetCore.Swagger": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/owl/.dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/ITTP.UsersManagement.API.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/ITTP.UsersManagement.API.Core.csproj",
+        "projectName": "ITTP.UsersManagement.API.Core",
+        "projectPath": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/ITTP.UsersManagement.API.Core.csproj",
+        "packagesPath": "/home/owl/.nuget/packages/",
+        "outputPath": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/owl/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Swashbuckle.AspNetCore.Swagger": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/owl/.dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.DataAccess/ITTP.UsersManagement.API.DataAccess.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.DataAccess/ITTP.UsersManagement.API.DataAccess.csproj",
+        "projectName": "ITTP.UsersManagement.API.DataAccess",
+        "projectPath": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.DataAccess/ITTP.UsersManagement.API.DataAccess.csproj",
+        "packagesPath": "/home/owl/.nuget/packages/",
+        "outputPath": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.DataAccess/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/owl/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/ITTP.UsersManagement.API.Core.csproj": {
+                "projectPath": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/ITTP.UsersManagement.API.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/owl/.dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.IntegrationTests/ITTP.UsersManagement.API.IntegrationTests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.IntegrationTests/ITTP.UsersManagement.API.IntegrationTests.csproj",
+        "projectName": "ITTP.UsersManagement.API.IntegrationTests",
+        "projectPath": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.IntegrationTests/ITTP.UsersManagement.API.IntegrationTests.csproj",
+        "packagesPath": "/home/owl/.nuget/packages/",
+        "outputPath": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.IntegrationTests/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/owl/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/ITTP.UsersManagement.API.Application.csproj": {
+                "projectPath": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/ITTP.UsersManagement.API.Application.csproj"
+              },
+              "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.DataAccess/ITTP.UsersManagement.API.DataAccess.csproj": {
+                "projectPath": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.DataAccess/ITTP.UsersManagement.API.DataAccess.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.12.0, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.72, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Swashbuckle.AspNetCore.Swagger": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[6.0.2, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.9.2, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.8.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/owl/.dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

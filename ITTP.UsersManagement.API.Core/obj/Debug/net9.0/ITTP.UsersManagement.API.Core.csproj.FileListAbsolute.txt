@@ -1,0 +1,13 @@
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/bin/Debug/net9.0/ITTP.UsersManagement.API.Core.deps.json
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/bin/Debug/net9.0/ITTP.UsersManagement.API.Core.dll
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/bin/Debug/net9.0/ITTP.UsersManagement.API.Core.pdb
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/obj/Debug/net9.0/ITTP.UsersManagement.API.Core.GeneratedMSBuildEditorConfig.editorconfig
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/obj/Debug/net9.0/ITTP.UsersManagement.API.Core.AssemblyInfoInputs.cache
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/obj/Debug/net9.0/ITTP.UsersManagement.API.Core.AssemblyInfo.cs
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/obj/Debug/net9.0/ITTP.UsersManagement.API.Core.csproj.CoreCompileInputs.cache
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/obj/Debug/net9.0/ITTP.UsersManagement.API.Core.sourcelink.json
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/obj/Debug/net9.0/ITTP.UsersManagement.API.Core.dll
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/obj/Debug/net9.0/refint/ITTP.UsersManagement.API.Core.dll
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/obj/Debug/net9.0/ITTP.UsersManagement.API.Core.pdb
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/obj/Debug/net9.0/ref/ITTP.UsersManagement.API.Core.dll
+/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/obj/Debug/net9.0/ITTP.UsersManagement.API.Core.csproj.AssemblyReference.cache

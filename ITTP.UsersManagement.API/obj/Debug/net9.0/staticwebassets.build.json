@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "IyF/A5XeC0MHvJN2ifLQ6cWBSFd3Z8p/bHwBA17C3Ro=",
+  "Source": "ITTP.UsersManagement.API",
+  "BasePath": "_content/ITTP.UsersManagement.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
