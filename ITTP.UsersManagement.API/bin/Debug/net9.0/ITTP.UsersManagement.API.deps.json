@@ -329,7 +329,7 @@
         },
         "runtime": {
           "ITTP.UsersManagement.API.Application.dll": {
-            "assemblyVersion": "1.0.0.0",
+            "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
@@ -343,7 +343,7 @@
         },
         "runtime": {
           "ITTP.UsersManagement.API.Core.dll": {
-            "assemblyVersion": "1.0.0.0",
+            "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
@@ -355,7 +355,7 @@
         },
         "runtime": {
           "ITTP.UsersManagement.API.DataAccess.dll": {
-            "assemblyVersion": "1.0.0.0",
+            "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
         }

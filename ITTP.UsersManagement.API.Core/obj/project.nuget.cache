@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "JJXA6XfytCM=",
+  "dgSpecHash": "9vxvcTIg03A=",
   "success": true,
   "projectFilePath": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/ITTP.UsersManagement.API.Core.csproj",
   "expectedPackageFiles": [
@@ -22,7 +22,8 @@
     "/home/owl/.nuget/packages/npgsql.entityframeworkcore.postgresql/9.0.4/npgsql.entityframeworkcore.postgresql.9.0.4.nupkg.sha512",
     "/home/owl/.nuget/packages/swashbuckle.aspnetcore.swagger/8.1.1/swashbuckle.aspnetcore.swagger.8.1.1.nupkg.sha512",
     "/home/owl/.nuget/packages/swashbuckle.aspnetcore.swaggergen/8.1.1/swashbuckle.aspnetcore.swaggergen.8.1.1.nupkg.sha512",
-    "/home/owl/.nuget/packages/swashbuckle.aspnetcore.swaggerui/8.1.1/swashbuckle.aspnetcore.swaggerui.8.1.1.nupkg.sha512"
+    "/home/owl/.nuget/packages/swashbuckle.aspnetcore.swaggerui/8.1.1/swashbuckle.aspnetcore.swaggerui.8.1.1.nupkg.sha512",
+    "/home/owl/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.4/microsoft.aspnetcore.app.ref.9.0.4.nupkg.sha512"
   ],
   "logs": []
 }

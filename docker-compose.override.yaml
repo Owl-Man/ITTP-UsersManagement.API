@@ -1,0 +1,10 @@
+﻿services:
+  ittp.usersmanagement.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+

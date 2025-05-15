@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "V7bFl67uSRk=",
+  "dgSpecHash": "U0r23HtaY2o=",
   "success": true,
   "projectFilePath": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.IntegrationTests/ITTP.UsersManagement.API.IntegrationTests.csproj",
   "expectedPackageFiles": [
@@ -48,7 +48,8 @@
     "/home/owl/.nuget/packages/xunit.core/2.9.2/xunit.core.2.9.2.nupkg.sha512",
     "/home/owl/.nuget/packages/xunit.extensibility.core/2.9.2/xunit.extensibility.core.2.9.2.nupkg.sha512",
     "/home/owl/.nuget/packages/xunit.extensibility.execution/2.9.2/xunit.extensibility.execution.2.9.2.nupkg.sha512",
-    "/home/owl/.nuget/packages/xunit.runner.visualstudio/2.8.2/xunit.runner.visualstudio.2.8.2.nupkg.sha512"
+    "/home/owl/.nuget/packages/xunit.runner.visualstudio/2.8.2/xunit.runner.visualstudio.2.8.2.nupkg.sha512",
+    "/home/owl/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.4/microsoft.aspnetcore.app.ref.9.0.4.nupkg.sha512"
   ],
   "logs": []
 }

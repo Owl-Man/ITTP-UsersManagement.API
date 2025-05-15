@@ -40,6 +40,7 @@ builder.Services.AddDbContext<UsersManagementDbContext>(options =>
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<AuthService>();
 
 var app = builder.Build();
 
@@ -51,7 +52,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "UsersManagement.API");
+        c.SwaggerEndpoint("http://localhost:5000/openapi/v1.json", "SocialNetwork API V1");
         c.RoutePrefix = "swagger";
     });
 }

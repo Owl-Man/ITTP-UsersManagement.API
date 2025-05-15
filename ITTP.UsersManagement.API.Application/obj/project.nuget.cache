@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "NFtEYNjGhSg=",
+  "dgSpecHash": "Xd58lUldoLY=",
   "success": true,
   "projectFilePath": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/ITTP.UsersManagement.API.Application.csproj",
   "expectedPackageFiles": [
@@ -30,7 +30,8 @@
     "/home/owl/.nuget/packages/swashbuckle.aspnetcore.swagger/8.1.1/swashbuckle.aspnetcore.swagger.8.1.1.nupkg.sha512",
     "/home/owl/.nuget/packages/swashbuckle.aspnetcore.swaggergen/8.1.1/swashbuckle.aspnetcore.swaggergen.8.1.1.nupkg.sha512",
     "/home/owl/.nuget/packages/swashbuckle.aspnetcore.swaggerui/8.1.1/swashbuckle.aspnetcore.swaggerui.8.1.1.nupkg.sha512",
-    "/home/owl/.nuget/packages/system.identitymodel.tokens.jwt/8.0.1/system.identitymodel.tokens.jwt.8.0.1.nupkg.sha512"
+    "/home/owl/.nuget/packages/system.identitymodel.tokens.jwt/8.0.1/system.identitymodel.tokens.jwt.8.0.1.nupkg.sha512",
+    "/home/owl/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.4/microsoft.aspnetcore.app.ref.9.0.4.nupkg.sha512"
   ],
   "logs": []
 }
