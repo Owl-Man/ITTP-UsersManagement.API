@@ -1,0 +1,109 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\ASPNET Projects\\ITTP-UsersManagement.API\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{508BCD20-5AD6-41E1-929A-23FD5A717AB8}|ITTP.UsersManagement.API\\ITTP.UsersManagement.API.csproj|c:\\aspnet projects\\ittp-usersmanagement.api\\ittp.usersmanagement.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{508BCD20-5AD6-41E1-929A-23FD5A717AB8}|ITTP.UsersManagement.API\\ITTP.UsersManagement.API.csproj|solutionrelative:ittp.usersmanagement.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{508BCD20-5AD6-41E1-929A-23FD5A717AB8}|ITTP.UsersManagement.API\\ITTP.UsersManagement.API.csproj|c:\\aspnet projects\\ittp-usersmanagement.api\\ittp.usersmanagement.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{508BCD20-5AD6-41E1-929A-23FD5A717AB8}|ITTP.UsersManagement.API\\ITTP.UsersManagement.API.csproj|solutionrelative:ittp.usersmanagement.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81DDED9D-158B-E303-5F62-77A2896D2A5A}|docker-compose.dcproj|c:\\aspnet projects\\ittp-usersmanagement.api\\docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{81DDED9D-158B-E303-5F62-77A2896D2A5A}|docker-compose.dcproj|solutionrelative:docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81DDED9D-158B-E303-5F62-77A2896D2A5A}|docker-compose.dcproj|c:\\aspnet projects\\ittp-usersmanagement.api\\docker-compose.override.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{81DDED9D-158B-E303-5F62-77A2896D2A5A}|docker-compose.dcproj|solutionrelative:docker-compose.override.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{508BCD20-5AD6-41E1-929A-23FD5A717AB8}|ITTP.UsersManagement.API\\ITTP.UsersManagement.API.csproj|c:\\aspnet projects\\ittp-usersmanagement.api\\ittp.usersmanagement.api\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{508BCD20-5AD6-41E1-929A-23FD5A717AB8}|ITTP.UsersManagement.API\\ITTP.UsersManagement.API.csproj|solutionrelative:ittp.usersmanagement.api\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\ASPNET Projects\\ITTP-UsersManagement.API\\ITTP.UsersManagement.API\\Program.cs",
+              "RelativeDocumentMoniker": "ITTP.UsersManagement.API\\Program.cs",
+              "ToolTip": "C:\\ASPNET Projects\\ITTP-UsersManagement.API\\ITTP.UsersManagement.API\\Program.cs",
+              "RelativeToolTip": "ITTP.UsersManagement.API\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T21:56:04.829Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\ASPNET Projects\\ITTP-UsersManagement.API\\ITTP.UsersManagement.API\\appsettings.json",
+              "RelativeDocumentMoniker": "ITTP.UsersManagement.API\\appsettings.json",
+              "ToolTip": "C:\\ASPNET Projects\\ITTP-UsersManagement.API\\ITTP.UsersManagement.API\\appsettings.json",
+              "RelativeToolTip": "ITTP.UsersManagement.API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-15T21:48:36.974Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "docker-compose.yml",
+              "DocumentMoniker": "C:\\ASPNET Projects\\ITTP-UsersManagement.API\\docker-compose.yml",
+              "RelativeDocumentMoniker": "docker-compose.yml",
+              "ToolTip": "C:\\ASPNET Projects\\ITTP-UsersManagement.API\\docker-compose.yml",
+              "RelativeToolTip": "docker-compose.yml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2025-05-15T21:45:39.2Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "docker-compose.override.yml",
+              "DocumentMoniker": "C:\\ASPNET Projects\\ITTP-UsersManagement.API\\docker-compose.override.yml",
+              "RelativeDocumentMoniker": "docker-compose.override.yml",
+              "ToolTip": "C:\\ASPNET Projects\\ITTP-UsersManagement.API\\docker-compose.override.yml",
+              "RelativeToolTip": "docker-compose.override.yml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2025-05-15T21:45:37.061Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\ASPNET Projects\\ITTP-UsersManagement.API\\ITTP.UsersManagement.API\\Dockerfile",
+              "RelativeDocumentMoniker": "ITTP.UsersManagement.API\\Dockerfile",
+              "ToolTip": "C:\\ASPNET Projects\\ITTP-UsersManagement.API\\ITTP.UsersManagement.API\\Dockerfile",
+              "RelativeToolTip": "ITTP.UsersManagement.API\\Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-15T21:41:32.572Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

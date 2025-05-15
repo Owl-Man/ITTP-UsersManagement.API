@@ -14,3 +14,19 @@
 /home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/obj/Debug/net9.0/refint/ITTP.UsersManagement.API.Application.dll
 /home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/obj/Debug/net9.0/ITTP.UsersManagement.API.Application.pdb
 /home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Application/obj/Debug/net9.0/ref/ITTP.UsersManagement.API.Application.dll
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Application\bin\Debug\net9.0\ITTP.UsersManagement.API.Application.deps.json
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Application\bin\Debug\net9.0\ITTP.UsersManagement.API.Application.dll
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Application\bin\Debug\net9.0\ITTP.UsersManagement.API.Application.pdb
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Application\bin\Debug\net9.0\ITTP.UsersManagement.API.Core.dll
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Application\bin\Debug\net9.0\ITTP.UsersManagement.API.Core.pdb
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Application\obj\Debug\net9.0\ITTP.UsersManagement.API.Application.csproj.AssemblyReference.cache
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Application\obj\Debug\net9.0\ITTP.UsersManagement.API.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Application\obj\Debug\net9.0\ITTP.UsersManagement.API.Application.AssemblyInfoInputs.cache
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Application\obj\Debug\net9.0\ITTP.UsersManagement.API.Application.AssemblyInfo.cs
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Application\obj\Debug\net9.0\ITTP.UsersManagement.API.Application.csproj.CoreCompileInputs.cache
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Application\obj\Debug\net9.0\ITTP.UsersManagement.API.Application.sourcelink.json
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Application\obj\Debug\net9.0\ITTP.Use.B8DF53EE.Up2Date
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Application\obj\Debug\net9.0\ITTP.UsersManagement.API.Application.dll
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Application\obj\Debug\net9.0\refint\ITTP.UsersManagement.API.Application.dll
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Application\obj\Debug\net9.0\ITTP.UsersManagement.API.Application.pdb
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Application\obj\Debug\net9.0\ref\ITTP.UsersManagement.API.Application.dll

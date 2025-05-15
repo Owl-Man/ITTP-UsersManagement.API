@@ -11,3 +11,16 @@
 /home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/obj/Debug/net9.0/ITTP.UsersManagement.API.Core.pdb
 /home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/obj/Debug/net9.0/ref/ITTP.UsersManagement.API.Core.dll
 /home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/obj/Debug/net9.0/ITTP.UsersManagement.API.Core.csproj.AssemblyReference.cache
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Core\bin\Debug\net9.0\ITTP.UsersManagement.API.Core.deps.json
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Core\bin\Debug\net9.0\ITTP.UsersManagement.API.Core.dll
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Core\bin\Debug\net9.0\ITTP.UsersManagement.API.Core.pdb
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Core\obj\Debug\net9.0\ITTP.UsersManagement.API.Core.csproj.AssemblyReference.cache
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Core\obj\Debug\net9.0\ITTP.UsersManagement.API.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Core\obj\Debug\net9.0\ITTP.UsersManagement.API.Core.AssemblyInfoInputs.cache
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Core\obj\Debug\net9.0\ITTP.UsersManagement.API.Core.AssemblyInfo.cs
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Core\obj\Debug\net9.0\ITTP.UsersManagement.API.Core.csproj.CoreCompileInputs.cache
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Core\obj\Debug\net9.0\ITTP.UsersManagement.API.Core.sourcelink.json
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Core\obj\Debug\net9.0\ITTP.UsersManagement.API.Core.dll
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Core\obj\Debug\net9.0\refint\ITTP.UsersManagement.API.Core.dll
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Core\obj\Debug\net9.0\ITTP.UsersManagement.API.Core.pdb
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Core\obj\Debug\net9.0\ref\ITTP.UsersManagement.API.Core.dll

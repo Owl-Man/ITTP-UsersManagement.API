@@ -849,32 +849,39 @@
     ]
   },
   "packageFolders": {
-    "/home/owl/.nuget/packages/": {}
+    "C:\\Users\\Owl\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.DataAccess/ITTP.UsersManagement.API.DataAccess.csproj",
+      "projectUniqueName": "C:\\ASPNET Projects\\ITTP-UsersManagement.API\\ITTP.UsersManagement.API.DataAccess\\ITTP.UsersManagement.API.DataAccess.csproj",
       "projectName": "ITTP.UsersManagement.API.DataAccess",
-      "projectPath": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.DataAccess/ITTP.UsersManagement.API.DataAccess.csproj",
-      "packagesPath": "/home/owl/.nuget/packages/",
-      "outputPath": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.DataAccess/obj/",
+      "projectPath": "C:\\ASPNET Projects\\ITTP-UsersManagement.API\\ITTP.UsersManagement.API.DataAccess\\ITTP.UsersManagement.API.DataAccess.csproj",
+      "packagesPath": "C:\\Users\\Owl\\.nuget\\packages\\",
+      "outputPath": "C:\\ASPNET Projects\\ITTP-UsersManagement.API\\ITTP.UsersManagement.API.DataAccess\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/home/owl/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Owl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/ITTP.UsersManagement.API.Core.csproj": {
-              "projectPath": "/home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.Core/ITTP.UsersManagement.API.Core.csproj"
+            "C:\\ASPNET Projects\\ITTP-UsersManagement.API\\ITTP.UsersManagement.API.Core\\ITTP.UsersManagement.API.Core.csproj": {
+              "projectPath": "C:\\ASPNET Projects\\ITTP-UsersManagement.API\\ITTP.UsersManagement.API.Core\\ITTP.UsersManagement.API.Core.csproj"
             }
           }
         }
@@ -889,7 +896,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net9.0": {
@@ -911,18 +918,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[9.0.4, 9.0.4]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.105/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

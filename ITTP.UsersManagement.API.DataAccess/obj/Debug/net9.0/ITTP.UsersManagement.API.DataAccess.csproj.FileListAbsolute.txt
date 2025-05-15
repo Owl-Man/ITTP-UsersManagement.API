@@ -14,3 +14,19 @@
 /home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.DataAccess/obj/Debug/net9.0/refint/ITTP.UsersManagement.API.DataAccess.dll
 /home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.DataAccess/obj/Debug/net9.0/ITTP.UsersManagement.API.DataAccess.pdb
 /home/owl/RiderProjects/ITTP.UsersManagement.API/ITTP.UsersManagement.API.DataAccess/obj/Debug/net9.0/ref/ITTP.UsersManagement.API.DataAccess.dll
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.DataAccess\bin\Debug\net9.0\ITTP.UsersManagement.API.DataAccess.deps.json
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.DataAccess\bin\Debug\net9.0\ITTP.UsersManagement.API.DataAccess.dll
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.DataAccess\bin\Debug\net9.0\ITTP.UsersManagement.API.DataAccess.pdb
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.DataAccess\bin\Debug\net9.0\ITTP.UsersManagement.API.Core.dll
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.DataAccess\bin\Debug\net9.0\ITTP.UsersManagement.API.Core.pdb
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.DataAccess\obj\Debug\net9.0\ITTP.UsersManagement.API.DataAccess.csproj.AssemblyReference.cache
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.DataAccess\obj\Debug\net9.0\ITTP.UsersManagement.API.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.DataAccess\obj\Debug\net9.0\ITTP.UsersManagement.API.DataAccess.AssemblyInfoInputs.cache
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.DataAccess\obj\Debug\net9.0\ITTP.UsersManagement.API.DataAccess.AssemblyInfo.cs
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.DataAccess\obj\Debug\net9.0\ITTP.UsersManagement.API.DataAccess.csproj.CoreCompileInputs.cache
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.DataAccess\obj\Debug\net9.0\ITTP.UsersManagement.API.DataAccess.sourcelink.json
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.DataAccess\obj\Debug\net9.0\ITTP.Use.D36E5055.Up2Date
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.DataAccess\obj\Debug\net9.0\ITTP.UsersManagement.API.DataAccess.dll
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.DataAccess\obj\Debug\net9.0\refint\ITTP.UsersManagement.API.DataAccess.dll
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.DataAccess\obj\Debug\net9.0\ITTP.UsersManagement.API.DataAccess.pdb
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.DataAccess\obj\Debug\net9.0\ref\ITTP.UsersManagement.API.DataAccess.dll

@@ -1,3 +1,3 @@
 ﻿<Project>
-  <Import Project="../build/ITTP.UsersManagement.API.props" />
+  <Import Project="..\build\ITTP.UsersManagement.API.props" />
 </Project>
