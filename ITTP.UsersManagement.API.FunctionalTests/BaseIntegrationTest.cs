@@ -1,4 +1,4 @@
-using ITTP.UsersManagement.API.DataAccess;
+﻿using ITTP.UsersManagement.API.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 

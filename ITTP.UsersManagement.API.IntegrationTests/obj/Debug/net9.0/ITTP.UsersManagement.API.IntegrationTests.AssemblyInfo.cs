@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ITTP.UsersManagement.API.IntegrationTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9c1b3a815b8a5a0ed981cd31b1d8ff0a47b55538")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d3b373128020f94cab3b97fe25d5645b6cf7e124")]
 [assembly: System.Reflection.AssemblyProductAttribute("ITTP.UsersManagement.API.IntegrationTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ITTP.UsersManagement.API.IntegrationTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

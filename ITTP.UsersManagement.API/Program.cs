@@ -4,6 +4,7 @@ using ITTP.UsersManagement.API.Application.Services;
 using ITTP.UsersManagement.API.Core.Interfaces;
 using ITTP.UsersManagement.API.DataAccess;
 using ITTP.UsersManagement.API.DataAccess.Repositories;
+using ITTP.UsersManagement.API.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -72,6 +73,8 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("http://localhost:5000/openapi/v1.json", "SocialNetwork API V1");
         c.RoutePrefix = "swagger";
     });
+    
+    app.ApplyMigrations();
 }
 
 app.UseHttpsRedirection();
@@ -79,3 +82,4 @@ app.UseAuthentication();
 app.MapControllers();
 app.Run();
 
+public partial class Program { }
