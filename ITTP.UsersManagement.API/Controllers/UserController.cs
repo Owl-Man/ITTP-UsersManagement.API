@@ -59,7 +59,7 @@ namespace UserManagementApi.Controllers
         {
             var currentUser = User.Identity.Name;
             
-            RetrievedId retrievedId = _userService.UpdatePassword(login, dto.password, currentUser);
+            RetrievedId retrievedId = _userService.UpdatePassword(login, dto.Password, currentUser);
             if (!string.IsNullOrEmpty(retrievedId.error)) return BadRequest(retrievedId.error);
             
             return NoContent();
@@ -71,7 +71,7 @@ namespace UserManagementApi.Controllers
         {
             string? currentUser = User.Identity.Name;
             
-            RetrievedId retrievedId = _userService.UpdateLogin(login, dto.login, currentUser);
+            RetrievedId retrievedId = _userService.UpdateLogin(login, dto.Login, currentUser);
             if (!string.IsNullOrEmpty(retrievedId.error)) return BadRequest(retrievedId.error);
             
             return NoContent();

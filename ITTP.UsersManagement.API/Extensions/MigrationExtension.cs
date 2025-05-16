@@ -13,7 +13,12 @@ public static class MigrationExtensions
             using IServiceScope serviceScope = app.ApplicationServices.CreateScope();
 
             using UsersManagementDbContext context = serviceScope.ServiceProvider.GetService<UsersManagementDbContext>();
+            
+            IConfiguration? configuration = serviceScope.ServiceProvider.GetService<IConfiguration>();
+            string? connectionString = configuration.GetConnectionString("UsersManagementDbContext");
+            Console.WriteLine($"Connection string: {connectionString}");
 
+            context.Database.EnsureCreated();
             context.Database.Migrate();
             
             // Seed Admin user if not exists
@@ -30,7 +35,8 @@ public static class MigrationExtensions
                     CreatedOn = DateTime.UtcNow,
                     CreatedBy = "System",
                     ModifiedOn = DateTime.UtcNow,
-                    ModifiedBy = "System"
+                    ModifiedBy = "System",
+                    RevokedBy = ""
                 });
                 context.SaveChanges();
             }

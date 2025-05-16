@@ -27,9 +27,9 @@ public class AuthService
         if (user == null || user.RevokedOn != null)
             throw new UnauthorizedAccessException("Invalid credentials or user is revoked");
 
-        var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(_configuration["JwtSettings:Key"]);
-        var tokenDescriptor = new SecurityTokenDescriptor
+        JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+        byte[] key = Encoding.ASCII.GetBytes(_configuration["JwtSettings:Key"]);
+        SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new[]
             {
@@ -42,7 +42,7 @@ public class AuthService
                 SecurityAlgorithms.HmacSha256Signature)
         };
 
-        var token = tokenHandler.CreateToken(tokenDescriptor);
+        SecurityToken? token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
     }
 }

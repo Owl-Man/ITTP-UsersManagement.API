@@ -113,15 +113,11 @@ public class UserService
         
         if (!string.IsNullOrEmpty(retrievedUser.error))
             return new RetrievedUser(null,  retrievedUser.error);
+        
+        if ((retrievedUser.user.Login == requestedByUserLogin && retrievedUser.user.RevokedOn == null)
+            || (isAdminHaveAccess && requestedByUserLogin == "admin"))
+            return retrievedUser;
 
-        //TODO: Fix this
-        if (retrievedUser.user.Login != requestedByUserLogin || retrievedUser.user.RevokedOn != null
-            || requestedByUserLogin != "admin"
-            || (!isAdminHaveAccess && requestedByUserLogin == "admin"))
-        {
-            return new RetrievedUser(null, ErrorForm.AccessError(login));
-        }
-
-        return retrievedUser;
+        return new RetrievedUser(null, ErrorForm.AccessError(login));
     }
 }
