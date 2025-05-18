@@ -21,7 +21,11 @@ public class UserService
         DateTime? birthday,
         bool admin, string createdBy)
     {
-        return _userRepository.Create(login, password, name, gender, birthday, admin, createdBy);
+        if (!User.ValidatePassword(password))
+            return new RetrievedIdDto(Guid.Empty, ErrorForm.FormatError());
+        
+        string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
+        return _userRepository.Create(login, hashedPassword, name, gender, birthday, admin, createdBy);
     }
 
     public RetrievedIdDto UpdatePersonalInfo(string login, string name, int gender, DateTime? birthday,
@@ -52,7 +56,12 @@ public class UserService
         if (!string.IsNullOrEmpty(retrievedUserDto.error))
             return new RetrievedIdDto(Guid.Empty, retrievedUserDto.error);
         
-        return _userRepository.UpdatePassword(retrievedUserDto.user.Id, password, modifiedBy);
+        if (!User.ValidatePassword(password))
+            return new RetrievedIdDto(Guid.Empty, ErrorForm.FormatError());
+        
+        string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
+        
+        return _userRepository.UpdatePassword(retrievedUserDto.user.Id, hashedPassword, modifiedBy);
     }
     
     public RetrievedUserDto GetUserByLogin(string login)
@@ -108,9 +117,13 @@ public class UserService
     private RetrievedUserDto TryGetIfRegularUserCanAccessToRequestedUser(string login, string requestedByUserLogin, bool isAdminAlsoHaveAccess=true, string password="")
     {
         RetrievedUserDto retrievedUserDto;
+
+        retrievedUserDto = _userRepository.GetByLogin(login);
         
-        retrievedUserDto = string.IsNullOrEmpty(password) ? _userRepository.GetByLogin(login) : _userRepository.GetByLoginAndPassword(login, password);
-        
+        if (!string.IsNullOrEmpty(password) && !BCrypt.Net.BCrypt.Verify(password, retrievedUserDto.user.Password))
+            return new RetrievedUserDto(null, ErrorForm.AccessError(login));
+                
+
         if (!string.IsNullOrEmpty(retrievedUserDto.error))
             return new RetrievedUserDto(null,  retrievedUserDto.error);
         
@@ -119,6 +132,7 @@ public class UserService
             return retrievedUserDto;
 
         _logger.LogError(ErrorForm.AccessError(login));
+        
         return new RetrievedUserDto(null, ErrorForm.AccessError(login));
     }
 

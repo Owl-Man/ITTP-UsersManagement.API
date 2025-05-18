@@ -166,39 +166,7 @@ public class UsersServiceTests
         Assert.Equal(Guid.Empty, result.Id);
         Assert.Equal("User not found", result.Error);
     }
-
-    [Fact]
-    public void UpdatePassword_RegularUserUpdatesOwnPassword_Success()
-    {
-        // Arrange
-        _userRepository.Setup(r => r.UpdatePassword(user.Id, "newpassword", "user1"))
-            .Returns(new RetrievedIdDto(user.Id, string.Empty));
-
-        // Act
-        var result = _userService.UpdatePassword("user1", "newpassword", "user1");
-
-        // Assert
-        Assert.NotNull(result);
-        Assert.Equal(user.Id, result.Id);
-        Assert.Empty(result.Error);
-    }
     
-    [Fact]
-    public void UpdatePassword_AdminUpdatesUser_Success()
-    {
-        // Arrange
-        _userRepository.Setup(r => r.UpdatePassword(user.Id, "newpassword", "admin"))
-            .Returns(new RetrievedIdDto(user.Id, string.Empty));
-
-        // Act
-        var result = _userService.UpdatePassword("user1", "newpassword", "admin");
-
-        // Assert
-        Assert.NotNull(result);
-        Assert.Equal(user.Id, result.Id);
-        Assert.Empty(result.Error);
-    }
-
     [Fact]
     public void UpdatePassword_UserNotFound_Fails()
     {

@@ -12,7 +12,6 @@ public interface IUserRepository
     RetrievedIdDto UpdateLogin(Guid id, string login, string modifiedBy);
     RetrievedIdDto UpdatePassword(Guid id, string password, string modifiedBy);
     RetrievedUserDto GetByLogin(string login);
-    RetrievedUserDto GetByLoginAndPassword(string login, string password);
     List<User> GetActiveUsers();
     List<User> GetUsersOlderThan(int age);
     RetrievedIdDto DeleteUserForce(Guid id);

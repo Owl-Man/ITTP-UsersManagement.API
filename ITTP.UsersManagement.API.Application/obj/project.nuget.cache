@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "vrnimTPdwKE=",
+  "dgSpecHash": "Cfa++gtOa8A=",
   "success": true,
   "projectFilePath": "C:\\ASPNET Projects\\ITTP-UsersManagement.API\\ITTP.UsersManagement.API.Application\\ITTP.UsersManagement.API.Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Owl\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Owl\\.nuget\\packages\\bouncycastle.cryptography\\2.4.0\\bouncycastle.cryptography.2.4.0.nupkg.sha512",
     "C:\\Users\\Owl\\.nuget\\packages\\docker.dotnet.enhanced\\3.126.1\\docker.dotnet.enhanced.3.126.1.nupkg.sha512",
     "C:\\Users\\Owl\\.nuget\\packages\\docker.dotnet.enhanced.x509\\3.126.1\\docker.dotnet.enhanced.x509.3.126.1.nupkg.sha512",

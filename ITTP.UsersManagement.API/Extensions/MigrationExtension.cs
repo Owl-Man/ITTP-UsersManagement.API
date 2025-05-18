@@ -16,7 +16,6 @@ public static class MigrationExtensions
             
             IConfiguration? configuration = serviceScope.ServiceProvider.GetService<IConfiguration>();
             string? connectionString = configuration.GetConnectionString("UsersManagementDbContext");
-            Console.WriteLine($"Connection string: {connectionString}");
 
             context.Database.EnsureCreated();
             context.Database.Migrate();
@@ -28,7 +27,7 @@ public static class MigrationExtensions
                 {
                     Id = Guid.NewGuid(),
                     Login = "admin",
-                    Password = "admin",
+                    Password = BCrypt.Net.BCrypt.HashPassword("admin"),
                     Name = "Administrator",
                     Gender = 2,
                     Admin = true,

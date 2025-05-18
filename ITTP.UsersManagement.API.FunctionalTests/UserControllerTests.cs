@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ITTP.UsersManagement.API.FunctionalTests;
 
-public class UsersControllerTests : BaseIntegrationTest
+public class UsersControllerTests : BaseFunctionalTest
 {
     private readonly ILogger<UsersController> _logger;
         

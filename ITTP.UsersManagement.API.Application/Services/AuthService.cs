@@ -26,35 +26,44 @@ public class AuthService
 
     public (string token, string error) Authenticate(LoginAndPasswordDto loginAndPasswordDto)
     {
-        RetrievedUserDto retrievedUserDto = _userRepository.GetByLoginAndPassword(loginAndPasswordDto.Login, loginAndPasswordDto.Password);
-        
-        if (!string.IsNullOrEmpty(retrievedUserDto.error))
-            return (string.Empty, retrievedUserDto.error);
 
-        if (retrievedUserDto.user.RevokedOn != null)
-            return (string.Empty, ErrorForm.AuthenticateError());
-
-        JsonWebTokenHandler tokenHandler = new JsonWebTokenHandler();
-        
-        SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:Key"]));
-        
-        SigningCredentials credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-        
-        SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
+        try
         {
-            Subject = new ClaimsIdentity(new[]
-            {
-                new Claim(ClaimTypes.Name, retrievedUserDto.user.Login),
-                new Claim(ClaimTypes.Role, retrievedUserDto.user.Admin ? "Admin" : "User")
-            }),
-            Expires = DateTime.UtcNow.Add(expiresTime),
-            SigningCredentials = credentials,
-            Issuer = _configuration["JwtSettings:Issuer"],
-            Audience = _configuration["JwtSettings:Audience"]
-        };
-
-        string token = tokenHandler.CreateToken(tokenDescriptor);
+            RetrievedUserDto retrievedUserDto = _userRepository.GetByLogin(loginAndPasswordDto.Login);
         
-        return (token, string.Empty);
+            if (!string.IsNullOrEmpty(retrievedUserDto.error))
+                return (string.Empty, retrievedUserDto.error);
+
+            if (retrievedUserDto.user.RevokedOn != null || !BCrypt.Net.BCrypt.Verify(loginAndPasswordDto.Password, retrievedUserDto.user.Password))
+                return (string.Empty, ErrorForm.AuthenticateError());
+
+            JsonWebTokenHandler tokenHandler = new JsonWebTokenHandler();
+        
+            SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:Key"]));
+        
+            SigningCredentials credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+        
+            SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new[]
+                {
+                    new Claim(ClaimTypes.Name, retrievedUserDto.user.Login),
+                    new Claim(ClaimTypes.Role, retrievedUserDto.user.Admin ? "Admin" : "User")
+                }),
+                Expires = DateTime.UtcNow.Add(expiresTime),
+                SigningCredentials = credentials,
+                Issuer = _configuration["JwtSettings:Issuer"],
+                Audience = _configuration["JwtSettings:Audience"]
+            };
+
+            string token = tokenHandler.CreateToken(tokenDescriptor);
+        
+            return (token, string.Empty);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return (string.Empty, e.Message);
+        }
     }
 }

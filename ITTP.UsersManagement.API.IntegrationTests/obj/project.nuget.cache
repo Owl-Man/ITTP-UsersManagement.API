@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "dMeHmE3ENrY=",
+  "dgSpecHash": "47vNhL1wkUY=",
   "success": true,
   "projectFilePath": "C:\\ASPNET Projects\\ITTP-UsersManagement.API\\ITTP.UsersManagement.API.IntegrationTests\\ITTP.UsersManagement.API.IntegrationTests.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Owl\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Owl\\.nuget\\packages\\bouncycastle.cryptography\\2.4.0\\bouncycastle.cryptography.2.4.0.nupkg.sha512",
     "C:\\Users\\Owl\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\Owl\\.nuget\\packages\\coverlet.collector\\6.0.2\\coverlet.collector.6.0.2.nupkg.sha512",

@@ -4,13 +4,13 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ITTP.UsersManagement.API.FunctionalTests;
 
-public abstract class BaseIntegrationTest : IClassFixture<TestWebAppFactory>
+public abstract class BaseFunctionalTest : IClassFixture<TestWebAppFactory>
 {
     protected IServiceScope _scope;
     protected UsersManagementDbContext dbContext;
     protected HttpClient _client;
 
-    public BaseIntegrationTest(TestWebAppFactory factory)
+    public BaseFunctionalTest(TestWebAppFactory factory)
     {
         _scope = factory.Services.CreateScope();
 

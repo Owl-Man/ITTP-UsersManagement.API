@@ -575,3 +575,4 @@ C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.Integration
 C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.IntegrationTests\obj\Debug\net9.0\ITTP.UsersManagement.API.IntegrationTests.pdb
 C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.IntegrationTests\obj\Debug\net9.0\ITTP.UsersManagement.API.IntegrationTests.genruntimeconfig.cache
 C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.IntegrationTests\obj\Debug\net9.0\ref\ITTP.UsersManagement.API.IntegrationTests.dll
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.IntegrationTests\bin\Debug\net9.0\BCrypt.Net-Next.dll

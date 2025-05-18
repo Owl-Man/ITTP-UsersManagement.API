@@ -436,3 +436,4 @@ C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API\bin\Debug\n
 C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API\bin\Debug\net9.0\Testcontainers.PostgreSql.dll
 C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API\bin\Debug\net9.0\runtimes\win\lib\net9.0\System.Diagnostics.EventLog.dll
 C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API\obj\Debug\net9.0\MvcTestingAppManifest.json
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API\bin\Debug\net9.0\BCrypt.Net-Next.dll

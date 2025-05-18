@@ -48,13 +48,12 @@ public class User
         return user;
     }
 
-    public static bool ValidateData(out string validateError, string login = "def", string password = "def",
+    public static bool ValidateData(out string validateError, string login = "def",
         string name = "def", int gender = 2)
     {
         validateError = string.Empty;
         
-        if (!Regex.IsMatch(login, @"^[a-zA-Z0-9]+$") || 
-            !Regex.IsMatch(password, @"^[a-zA-Z0-9]+$") ||
+        if (!Regex.IsMatch(login, @"^[a-zA-Z0-9]+$") ||
             !Regex.IsMatch(name, @"^[a-zA-Z0-9]+$"))
         {
             validateError = "can only contain letters and numbers";
@@ -66,6 +65,14 @@ public class User
             validateError = "gender must be either 0 or 1 or 2";
             return false;
         }
+        
+        return true;
+    }
+
+    public static bool ValidatePassword(string password)
+    {
+        if (!Regex.IsMatch(password, @"^[a-zA-Z0-9]+$"))
+            return false;
         
         return true;
     }

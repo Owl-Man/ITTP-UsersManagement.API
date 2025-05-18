@@ -24,7 +24,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            User.ValidateData(out string validateError, login, password, name, gender);
+            User.ValidateData(out string validateError, login, name, gender);
         
             if (!string.IsNullOrEmpty(validateError)) return new RetrievedIdDto(Guid.Empty, validateError);
 
@@ -110,10 +110,6 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            User.ValidateData(out var validateError, password: password);
-            
-            if (!string.IsNullOrEmpty(validateError)) return new RetrievedIdDto(Guid.Empty, validateError);
-
             _context.Users
                 .Where(u => u.Id == id)
                 .ExecuteUpdate(s => s
@@ -137,26 +133,6 @@ public class UserRepository : IUserRepository
         try
         {
             UserEntity userEntity = _context.Users.FirstOrDefault(u => u.Login == login);
-        
-            if (userEntity == null)
-                return new RetrievedUserDto(null, ErrorForm.NoUsersFound(login));
-        
-            return new RetrievedUserDto(userEntity.ToUser(), string.Empty);
-        }
-        catch (Exception ex)
-        {
-            string error = ErrorForm.NoUsersFound(login);
-            
-            _logger.LogError(ex, error);
-            return new RetrievedUserDto(null, error);
-        }
-    }
-
-    public RetrievedUserDto GetByLoginAndPassword(string login, string password)
-    {
-        try
-        {
-            UserEntity userEntity = _context.Users.FirstOrDefault(u => u.Login == login && u.Password == password);
         
             if (userEntity == null)
                 return new RetrievedUserDto(null, ErrorForm.NoUsersFound(login));

@@ -22,11 +22,7 @@ public class UserConfiguration : IEntityTypeConfiguration<UserEntity>
             .IsUnique();
 
         builder.Property(u => u.Password)
-            .IsRequired()
-            .HasAnnotation(
-                "RegularExpression",
-                new RegularExpressionAttribute(@"^[a-zA-Z0-9]+$")
-                    { ErrorMessage = "can only contain Latin letters and numbers" });
+            .IsRequired();
 
         builder.Property(u => u.Name)
             .IsRequired()

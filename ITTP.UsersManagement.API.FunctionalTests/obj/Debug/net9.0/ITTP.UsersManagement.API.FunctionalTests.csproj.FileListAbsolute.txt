@@ -448,3 +448,4 @@ C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.FunctionalT
 C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.FunctionalTests\bin\Debug\net9.0\Microsoft.AspNetCore.OpenApi.dll
 C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.FunctionalTests\bin\Debug\net9.0\ITTP.UsersManagement.API.dll
 C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.FunctionalTests\bin\Debug\net9.0\ITTP.UsersManagement.API.pdb
+C:\ASPNET Projects\ITTP-UsersManagement.API\ITTP.UsersManagement.API.FunctionalTests\bin\Debug\net9.0\BCrypt.Net-Next.dll
