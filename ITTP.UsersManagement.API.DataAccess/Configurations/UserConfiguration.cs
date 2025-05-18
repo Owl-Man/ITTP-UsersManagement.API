@@ -32,7 +32,7 @@ public class UserConfiguration : IEntityTypeConfiguration<UserEntity>
             .IsRequired()
             .HasAnnotation(
                 "RegularExpression",
-                new RegularExpressionAttribute(@"^[a-zA-Zа-яА-Я]+$")
+                new RegularExpressionAttribute(@"^[a-zA-Z0-9]+$")
                     { ErrorMessage = "can only contain Latin letters and numbers" });
 
         builder.Property(u => u.Gender)

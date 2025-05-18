@@ -22,7 +22,7 @@ public static class MigrationExtensions
             context.Database.Migrate();
             
             // Seed Admin user if not exists
-            if (!context.Users.Any(u => u.Login == "Admin"))
+            if (!context.Users.Any(u => u.Login == "admin"))
             {
                 context.Users.Add(new UserEntity
                 {

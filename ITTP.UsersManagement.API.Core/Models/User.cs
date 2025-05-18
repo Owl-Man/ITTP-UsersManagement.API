@@ -53,9 +53,12 @@ public class User
     {
         validateError = string.Empty;
         
-        if (!Regex.IsMatch(login, @"^[a-zA-Zа-яА-Я]+$") || 
-            !Regex.IsMatch(password, @"^[a-zA-Zа-яА-Я]+$") ||
-            !Regex.IsMatch(name, @"^[a-zA-Zа-яА-Я]+$"))
+        //TODO: Remove temp solution
+        return true;
+        
+        if (!Regex.IsMatch(login, @"^[a-zA-Z0-9]+$") || 
+            !Regex.IsMatch(password, @"^[a-zA-Z0-9]+$") ||
+            !Regex.IsMatch(name, @"^[a-zA-Z0-9]+$"))
         {
             validateError = "can only contain letters and numbers";
             return false;

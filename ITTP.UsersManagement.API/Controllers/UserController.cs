@@ -23,7 +23,13 @@ namespace UserManagementApi.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] UserLoginDto userLoginDto)
         {
-            var token = _authService.Authenticate(userLoginDto);
+            (string token, string error) = _authService.Authenticate(userLoginDto);
+
+            if (!string.IsNullOrEmpty(error))
+            {
+                return Unauthorized(new { Error = error });
+            }
+            
             return Ok(new { Token = token });
         }
 
@@ -33,9 +39,9 @@ namespace UserManagementApi.Controllers
         {
             string? currentUser = User.Identity.Name;
             
-            RetrievedId retrievedId = _userService.CreateUser(dto.Login, dto.Password, dto.Name, dto.Gender, dto.Birthday, dto.Admin, currentUser);
+            RetrievedIdDTO retrievedIdDto = _userService.CreateUser(dto.Login, dto.Password, dto.Name, dto.Gender, dto.Birthday, dto.Admin, currentUser);
 
-            if (!string.IsNullOrEmpty(retrievedId.error)) return BadRequest(retrievedId.error);
+            if (!string.IsNullOrEmpty(retrievedIdDto.error)) return BadRequest(retrievedIdDto.error);
             
             return Ok(new { login = dto.Login });
         }
@@ -46,9 +52,9 @@ namespace UserManagementApi.Controllers
         {
             string? currentUser = User.Identity.Name;
             
-            RetrievedId retrievedId = _userService.UpdatePersonalInfo(login, personalInfoDto.Name, personalInfoDto.Gender, personalInfoDto.Birthday, currentUser);
+            RetrievedIdDTO retrievedIdDto = _userService.UpdatePersonalInfo(login, personalInfoDto.Name, personalInfoDto.Gender, personalInfoDto.Birthday, currentUser);
             
-            if (!string.IsNullOrEmpty(retrievedId.error)) return BadRequest(retrievedId.error);
+            if (!string.IsNullOrEmpty(retrievedIdDto.error)) return BadRequest(retrievedIdDto.error);
             
             return NoContent();
         }
@@ -59,20 +65,20 @@ namespace UserManagementApi.Controllers
         {
             var currentUser = User.Identity.Name;
             
-            RetrievedId retrievedId = _userService.UpdatePassword(login, dto.Password, currentUser);
-            if (!string.IsNullOrEmpty(retrievedId.error)) return BadRequest(retrievedId.error);
+            RetrievedIdDTO retrievedIdDto = _userService.UpdatePassword(login, dto.Password, currentUser);
+            if (!string.IsNullOrEmpty(retrievedIdDto.error)) return BadRequest(retrievedIdDto.error);
             
             return NoContent();
         }
 
         [HttpPut("{login}/login")]
         [Authorize]
-        public IActionResult UpdateLogin(string login, [FromBody] UpdateLoginDto dto)
+        public IActionResult UpdateLogin(string login, [FromBody] LoginDto dto)
         {
             string? currentUser = User.Identity.Name;
             
-            RetrievedId retrievedId = _userService.UpdateLogin(login, dto.Login, currentUser);
-            if (!string.IsNullOrEmpty(retrievedId.error)) return BadRequest(retrievedId.error);
+            RetrievedIdDTO retrievedIdDto = _userService.UpdateLogin(login, dto.Login, currentUser);
+            if (!string.IsNullOrEmpty(retrievedIdDto.error)) return BadRequest(retrievedIdDto.error);
             
             return NoContent();
         }
@@ -92,26 +98,26 @@ namespace UserManagementApi.Controllers
         {
             string? currentUser = User.Identity.Name;
             
-            RetrievedUser retrievedUser = _userService.GetUserByLogin(login, currentUser);
+            RetrievedUserDTO retrievedUserDto = _userService.GetUserByLogin(login, currentUser);
             
-            if (!string.IsNullOrEmpty(retrievedUser.error)) return BadRequest(retrievedUser.error);
+            if (!string.IsNullOrEmpty(retrievedUserDto.error)) return BadRequest(retrievedUserDto.error);
 
-            UserPersonalInfoDto userPersonalInfoDto = retrievedUser.user.ToUserPersonalInfoDto();
+            UserPersonalInfoDto userPersonalInfoDto = retrievedUserDto.user.ToUserPersonalInfoDto();
             
             return Ok(userPersonalInfoDto);
         }
 
         [HttpGet("{login}/getByLoginAndPassword")]
         [Authorize(Roles = "User")]
-        public IActionResult GetUserByLoginAndPassword([FromBody] UserLoginDto userLoginDto)
+        public IActionResult GetUserByLoginAndPassword(string login, string password)
         {
             string? currentUser = User.Identity.Name;
             
-            RetrievedUser retrievedUser = _userService.GetByLoginAndPassword(userLoginDto.Login, userLoginDto.Password, currentUser);
+            RetrievedUserDTO retrievedUserDto = _userService.GetByLoginAndPassword(login, password, currentUser);
             
-            if (!string.IsNullOrEmpty(retrievedUser.error)) return BadRequest(retrievedUser.error);
+            if (!string.IsNullOrEmpty(retrievedUserDto.error)) return BadRequest(retrievedUserDto.error);
             
-            return Ok(retrievedUser);
+            return Ok(retrievedUserDto);
         }
 
         [HttpGet("age/{age}")]
@@ -128,11 +134,11 @@ namespace UserManagementApi.Controllers
         {
             string? currentUser = User.Identity.Name;
 
-            RetrievedId retrievedId;
+            RetrievedIdDTO retrievedIdDto;
             
-            retrievedId = softDelete ? _userService.DeleteUser(login, currentUser) : _userService.DeleteUserForce(login);
+            retrievedIdDto = softDelete ? _userService.DeleteUser(login, currentUser) : _userService.DeleteUserForce(login);
             
-            if (!string.IsNullOrEmpty(retrievedId.error)) return BadRequest(retrievedId.error);
+            if (!string.IsNullOrEmpty(retrievedIdDto.error)) return BadRequest(retrievedIdDto.error);
             
             return NoContent();
         }

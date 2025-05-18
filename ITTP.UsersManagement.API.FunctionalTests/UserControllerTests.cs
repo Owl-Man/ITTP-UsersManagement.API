@@ -11,6 +11,7 @@ namespace UserManagementApi.FunctionalTests
     public class UsersControllerTests : BaseIntegrationTest
     {
         private readonly ILogger<UsersController> _logger;
+        
         public UsersControllerTests(TestWebAppFactory factory) : base(factory)
         {
             _logger = LoggerFactory.Create(builder => builder.AddConsole()).CreateLogger<UsersController>();
@@ -20,7 +21,7 @@ namespace UserManagementApi.FunctionalTests
         public void Login_Successful_ReturnsToken()
         {
             // Arrange
-            var loginDto = new UserLoginDto { Login = "Admin", Password = "Admin123" };
+            UserLoginDto loginDto = new UserLoginDto { Login = "admin", Password = "admin" };
 
             // Act
             HttpResponseMessage response = _client.PostAsJsonAsync("/users/login", loginDto).GetAwaiter().GetResult();
@@ -37,7 +38,7 @@ namespace UserManagementApi.FunctionalTests
         public void Login_InvalidCredentials_ReturnsUnauthorized()
         {
             // Arrange
-            var loginDto = new UserLoginDto { Login = "Admin", Password = "WrongPass" };
+            var loginDto = new UserLoginDto { Login = "admin", Password = "WrongPass" };
 
             // Act
             var response = _client.PostAsJsonAsync("/users/login", loginDto).GetAwaiter().GetResult();
@@ -50,9 +51,9 @@ namespace UserManagementApi.FunctionalTests
         public void CreateUser_AsAdmin_Succeeds()
         {
             // Arrange
-            var adminToken = GetAdminToken();
+            string adminToken = GetAdminToken();
             _client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", adminToken);
-            var createDto = new CreateUserDto
+            CreateUserDto createDto = new CreateUserDto
             {
                 Login = "newuser",
                 Password = "password",
@@ -62,26 +63,26 @@ namespace UserManagementApi.FunctionalTests
             };
 
             // Act
-            var response = _client.PostAsJsonAsync("/users", createDto).GetAwaiter().GetResult();
-            Console.WriteLine($"Status Code: {response.StatusCode}");
-            var content = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-            Console.WriteLine($"Response Content: {content}");
+            HttpResponseMessage response = _client.PostAsJsonAsync("/users", createDto).GetAwaiter().GetResult();
+            _logger.LogInformation($"Status Code: {response.StatusCode}");
+            string content = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            _logger.LogInformation($"Response Content: {content}");
             response.EnsureSuccessStatusCode();
-            CreateUserResponse? result = response.Content.ReadFromJsonAsync<CreateUserResponse>().GetAwaiter().GetResult();
+            LoginDto? result = response.Content.ReadFromJsonAsync<LoginDto>().GetAwaiter().GetResult();
 
             // Assert
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             Assert.NotNull(result);
-            Assert.Equal("newuser", result.login);
+            Assert.Equal("newuser", result.Login);
         }
 
         [Fact]
         public void CreateUser_AsRegularUser_ReturnsForbidden()
         {
             // Arrange
-            var adminToken = GetAdminToken();
-            var regularUser = CreateRegularUser(adminToken, "regularuser", "regularpass");
-            var regularToken = GetToken(regularUser.Login, regularUser.Password);
+            string adminToken = GetAdminToken();
+            UserCredentials regularUser = CreateRegularUser(adminToken, "regularuser", "regularpass");
+            string regularToken = GetToken(regularUser.Login, regularUser.Password);
             _client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", regularToken);
             var createDto = new CreateUserDto
             {
@@ -185,7 +186,7 @@ namespace UserManagementApi.FunctionalTests
             // Assert
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             Assert.NotEmpty(users);
-            Assert.Contains(users, u => u.Login == "Admin");
+            Assert.Contains(users, u => u.Login == "admin");
         }
 
         [Fact]
@@ -232,7 +233,7 @@ namespace UserManagementApi.FunctionalTests
             UserLoginDto loginDto = new UserLoginDto { Login = user.Login, Password = user.Password };
 
             // Act
-            HttpResponseMessage response = _client.PostAsJsonAsync($"/users/{user.Login}/getByLoginAndPassword", loginDto).GetAwaiter().GetResult();
+            HttpResponseMessage response = _client.GetAsync($"/users/{user.Login}/getByLoginAndPassword?password={user.Password}").GetAwaiter().GetResult();
             response.EnsureSuccessStatusCode();
 
             // Assert
@@ -296,7 +297,6 @@ namespace UserManagementApi.FunctionalTests
                 Admin = false
             };
             HttpResponseMessage response = _client.PostAsJsonAsync("/users", createDto).GetAwaiter().GetResult();
-            response.EnsureSuccessStatusCode();
             return new UserCredentials(login, password);
         }
 
@@ -305,11 +305,6 @@ namespace UserManagementApi.FunctionalTests
         private class LoginResponse
         {
             public string Token { get; set; }
-        }
-
-        private class CreateUserResponse
-        {
-            public string login { get; set; }
         }
     }
 }

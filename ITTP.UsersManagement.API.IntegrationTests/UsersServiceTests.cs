@@ -43,11 +43,11 @@ public class UsersServiceTests
         
         //Arrange
         
-        _userRepository.Setup<RetrievedId>( r => 
+        _userRepository.Setup<RetrievedIdDTO>( r => 
                 r.Create("testuser", "password", "Test User", 1, null, false, "admin"))
-            .Returns(new RetrievedId(user.Id, string.Empty));
+            .Returns(new RetrievedIdDTO(user.Id, string.Empty));
         
-        _userRepository.Setup(r => r.GetByLogin("testuser")).Returns(new RetrievedUser(user, string.Empty));
+        _userRepository.Setup(r => r.GetByLogin("testuser")).Returns(new RetrievedUserDTO(user, string.Empty));
         
         //Act
         
@@ -80,7 +80,7 @@ public class UsersServiceTests
             ModifiedOn = DateTime.UtcNow,
             ModifiedBy = "admin"
         }.ToUser();
-        _userRepository.Setup(r => r.GetByLogin("testuser")).Returns(new RetrievedUser(user,  string.Empty));
+        _userRepository.Setup(r => r.GetByLogin("testuser")).Returns(new RetrievedUserDTO(user,  string.Empty));
         
         // Act
         
