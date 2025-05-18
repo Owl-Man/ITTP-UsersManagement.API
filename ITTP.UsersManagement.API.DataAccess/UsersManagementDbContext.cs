@@ -1,4 +1,3 @@
-using ITTP.UsersManagement.API.Core.Models;
 using ITTP.UsersManagement.API.DataAccess.Configurations;
 using ITTP.UsersManagement.API.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;

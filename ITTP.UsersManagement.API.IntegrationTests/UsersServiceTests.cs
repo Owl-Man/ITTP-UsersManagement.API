@@ -1,5 +1,4 @@
-﻿using ITTP.UsersManagement.API.Application;
-using ITTP.UsersManagement.API.Application.Services;
+﻿using ITTP.UsersManagement.API.Application.Services;
 using ITTP.UsersManagement.API.Core.DTOs;
 using ITTP.UsersManagement.API.Core.Interfaces;
 using ITTP.UsersManagement.API.Core.Models;
@@ -15,6 +14,8 @@ public class UsersServiceTests
     private readonly ILogger<UserService> _logger;
     private readonly Mock<IUserRepository> _userRepository;
     private readonly UserService _userService;
+    
+    private User user, user2, admin;
 
     public UsersServiceTests()
     {
@@ -22,74 +23,194 @@ public class UsersServiceTests
         
         _userRepository = new Mock<IUserRepository>();
         _userService = new UserService(_logger, _userRepository.Object);
+        
+        SetupUserRepositoryWithUsers();
+    }
+    
+    private void SetupUserRepositoryWithUsers()
+    {
+        user = CreateUser("user1", "user1", "user1", false);
+        user2 = CreateUser("user2", "user2", "user2", false);
+        admin = CreateUser("admin", "admin", "admin", true);
+        
+        _userRepository.Setup(r => r.GetByLogin("user1")).Returns(new RetrievedUserDto(user,string.Empty));
+        _userRepository.Setup(r => r.GetByLogin("user2")).Returns(new RetrievedUserDto(user2,string.Empty));
+        _userRepository.Setup(r => r.GetByLogin("admin")).Returns(new RetrievedUserDto(admin,string.Empty));
+    }
+
+    private User CreateUser(string login, string password, string name, bool admin)
+    {
+        return new UserEntity
+        {
+            Id = Guid.NewGuid(),
+            Login = login,
+            Password = password,
+            Name = name,
+            Gender = 1,
+            Admin = admin,
+            CreatedOn = DateTime.UtcNow,
+            CreatedBy = "admin",
+            ModifiedOn = DateTime.UtcNow,
+            ModifiedBy = "admin",
+            RevokedBy = "",
+            RevokedOn = null,
+        }.ToUser();
     }
     
     [Fact]
-    public void CreateUser_Success()
+    public void UpdatePersonalInfo_RegularUserUpdatesOwnInfo_Success()
     {
-        User user = new UserEntity
-        {
-            Id = Guid.NewGuid(),
-            Login = "testuser",
-            Password = "password",
-            Name = "Test User",
-            Gender = 1,
-            Admin = false,
-            CreatedOn = DateTime.UtcNow,
-            CreatedBy = "admin",
-            ModifiedOn = DateTime.UtcNow,
-            ModifiedBy = "admin"
-        }.ToUser();
-        
-        //Arrange
-        
-        _userRepository.Setup<RetrievedIdDTO>( r => 
-                r.Create("testuser", "password", "Test User", 1, null, false, "admin"))
-            .Returns(new RetrievedIdDTO(user.Id, string.Empty));
-        
-        _userRepository.Setup(r => r.GetByLogin("testuser")).Returns(new RetrievedUserDTO(user, string.Empty));
-        
-        //Act
-        
-        (Guid userId, string error) = _userService.CreateUser(user.Login, user.Password, user.Name, user.Gender, user.Birthday, user.Admin, user.CreatedBy);
-        (User? retrievedUser, string errorR) = _userService.GetUserByLogin("testuser", user.Login);
-        
-        //Assert
-        
-        Assert.NotNull(retrievedUser);
-        Assert.Equal(user.Id, retrievedUser.Id);
-        Assert.Equal(user.Login, retrievedUser.Login);
-        Assert.Equal(user.Name, retrievedUser.Name);
+        // Arrange
+        _userRepository.Setup(r => r.UpdatePersonalInfo(user.Id, "NewName", 1, null, "user1"))
+            .Returns(new RetrievedIdDto(user.Id, string.Empty));
+
+        // Act
+        RetrievedIdDto result = _userService.UpdatePersonalInfo("user1", "NewName", 1, null, "user1");
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(user.Id, result.Id);
+        Assert.Empty(result.Error);
     }
 
     [Fact]
-    public void UpdateUser_UpdatesCorrectly()
+    public void UpdatePersonalInfo_RegularUserUpdatesOtherUser_Fails()
     {
         // Arrange
-        
-        var user = new UserEntity
-        {
-            Id = Guid.NewGuid(),
-            Login = "testuser",
-            Password = "password",
-            Name = "Test User",
-            Gender = 1,
-            Admin = false,
-            CreatedOn = DateTime.UtcNow,
-            CreatedBy = "admin",
-            ModifiedOn = DateTime.UtcNow,
-            ModifiedBy = "admin"
-        }.ToUser();
-        _userRepository.Setup(r => r.GetByLogin("testuser")).Returns(new RetrievedUserDTO(user,  string.Empty));
+        _userRepository.Setup(r => r.UpdatePersonalInfo(user.Id, "NewName", 1, null, "user1"))
+            .Returns(new RetrievedIdDto(user.Id, string.Empty));
         
         // Act
-        
-        _userService.UpdatePersonalInfo("testuser", "testuser", 2, null, "admin");
-        (User? retrievedUser, string error) = _userService.GetUserByLogin("testuser", user.Login);
+        var result = _userService.UpdatePersonalInfo("user1", "NewName", 1, null, "user2");
 
         // Assert
-        
-        Assert.Equal("Test User", retrievedUser.Name);
-        Assert.Equal(1, retrievedUser.Gender);
+        Assert.NotNull(result);
+        Assert.Equal(Guid.Empty, result.Id);
+        Assert.NotEmpty(result.Error);
+    }
+
+    [Fact]
+    public void UpdatePersonalInfo_AdminUpdatesUser_Success()
+    {
+        // Arrange
+        _userRepository.Setup(r => r.UpdatePersonalInfo(user.Id, "NewName", 1, null, "admin"))
+            .Returns(new RetrievedIdDto(user.Id, string.Empty));
+
+        // Act
+        var result = _userService.UpdatePersonalInfo("user1", "NewName", 1, null, "admin");
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(user.Id, result.Id);
+        Assert.Empty(result.Error);
+    }
+
+    [Fact]
+    public void UpdatePersonalInfo_UserNotFound_Fails()
+    {
+        // Arrange
+        _userRepository.Setup(r => r.GetByLogin("nonexistent")).Returns(new RetrievedUserDto(null, "User not found"));
+
+        // Act
+        var result = _userService.UpdatePersonalInfo("nonexistent", "NewName", 1, null, "admin");
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(Guid.Empty, result.Id);
+        Assert.Equal("User not found", result.Error);
+    }
+
+    [Fact]
+    public void UpdateLogin_RegularUserUpdatesOwnLogin_Success()
+    {
+        // Arrange
+        _userRepository.Setup(r => r.UpdateLogin(user.Id, "newlogin", "user1"))
+            .Returns(new RetrievedIdDto(user.Id, string.Empty));
+
+        // Act
+        var result = _userService.UpdateLogin("user1", "newlogin", "user1");
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(user.Id, result.Id);
+        Assert.Empty(result.Error);
+    }
+
+    [Fact]
+    public void UpdateLogin_AdminUpdatesUser_Success()
+    {
+        // Arrange
+        _userRepository.Setup(r => r.UpdateLogin(user.Id, "newlogin", "admin"))
+            .Returns(new RetrievedIdDto(user.Id, string.Empty));
+
+        // Act
+        var result = _userService.UpdateLogin("user1", "newlogin", "admin");
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(user.Id, result.Id);
+        Assert.Empty(result.Error);
+    }
+
+    [Fact]
+    public void UpdateLogin_UserNotFound_Fails()
+    {
+        // Arrange
+        _userRepository.Setup(r => r.GetByLogin("nonexistent")).Returns(new RetrievedUserDto(null, "User not found"));
+
+        // Act
+        var result = _userService.UpdateLogin("nonexistent", "newlogin", "admin");
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(Guid.Empty, result.Id);
+        Assert.Equal("User not found", result.Error);
+    }
+
+    [Fact]
+    public void UpdatePassword_RegularUserUpdatesOwnPassword_Success()
+    {
+        // Arrange
+        _userRepository.Setup(r => r.UpdatePassword(user.Id, "newpassword", "user1"))
+            .Returns(new RetrievedIdDto(user.Id, string.Empty));
+
+        // Act
+        var result = _userService.UpdatePassword("user1", "newpassword", "user1");
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(user.Id, result.Id);
+        Assert.Empty(result.Error);
+    }
+    
+    [Fact]
+    public void UpdatePassword_AdminUpdatesUser_Success()
+    {
+        // Arrange
+        _userRepository.Setup(r => r.UpdatePassword(user.Id, "newpassword", "admin"))
+            .Returns(new RetrievedIdDto(user.Id, string.Empty));
+
+        // Act
+        var result = _userService.UpdatePassword("user1", "newpassword", "admin");
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(user.Id, result.Id);
+        Assert.Empty(result.Error);
+    }
+
+    [Fact]
+    public void UpdatePassword_UserNotFound_Fails()
+    {
+        // Arrange
+        _userRepository.Setup(r => r.GetByLogin("nonexistent")).Returns(new RetrievedUserDto(null, "User not found"));
+
+        // Act
+        var result = _userService.UpdatePassword("nonexistent", "newpassword", "admin");
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(Guid.Empty, result.Id);
+        Assert.Equal("User not found", result.Error);
     }
 }

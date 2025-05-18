@@ -17,52 +17,52 @@ public class UserService
         _userRepository = userRepository;
     }
 
-    public RetrievedIdDTO CreateUser(string login, string password, string name, int gender,
+    public RetrievedIdDto CreateUser(string login, string password, string name, int gender,
         DateTime? birthday,
         bool admin, string createdBy)
     {
         return _userRepository.Create(login, password, name, gender, birthday, admin, createdBy);
     }
 
-    public RetrievedIdDTO UpdatePersonalInfo(string login, string name, int gender, DateTime? birthday,
+    public RetrievedIdDto UpdatePersonalInfo(string login, string name, int gender, DateTime? birthday,
         string modifiedBy)
     {
-        RetrievedUserDTO retrievedUserDto = TryGetUserWithAccess(login, modifiedBy, true);
+        RetrievedUserDto retrievedUserDto = TryGetIfRegularUserCanAccessToRequestedUser(login, modifiedBy);
 
         if (!string.IsNullOrEmpty(retrievedUserDto.error))
-            return new RetrievedIdDTO(Guid.Empty, retrievedUserDto.error);
+            return new RetrievedIdDto(Guid.Empty, retrievedUserDto.error);
             
         return _userRepository.UpdatePersonalInfo(retrievedUserDto.user.Id, name, gender, birthday, modifiedBy);
     }
 
-    public RetrievedIdDTO UpdateLogin(string login, string newLogin, string modifiedBy)
+    public RetrievedIdDto UpdateLogin(string login, string newLogin, string modifiedBy)
     {
-        RetrievedUserDTO retrievedUserDto = TryGetUserWithAccess(login, modifiedBy, true);
+        RetrievedUserDto retrievedUserDto = TryGetIfRegularUserCanAccessToRequestedUser(login, modifiedBy);
 
         if (!string.IsNullOrEmpty(retrievedUserDto.error))
-            return new RetrievedIdDTO(Guid.Empty, retrievedUserDto.error);
+            return new RetrievedIdDto(Guid.Empty, retrievedUserDto.error);
         
-        return _userRepository.UpdateLogin(retrievedUserDto.user.Id, login, modifiedBy);
+        return _userRepository.UpdateLogin(retrievedUserDto.user.Id, newLogin, modifiedBy);
     }
 
-    public RetrievedIdDTO UpdatePassword(string login, string password, string modifiedBy)
+    public RetrievedIdDto UpdatePassword(string login, string password, string modifiedBy)
     {
-        RetrievedUserDTO retrievedUserDto = TryGetUserWithAccess(login, modifiedBy, true);
+        RetrievedUserDto retrievedUserDto = TryGetIfRegularUserCanAccessToRequestedUser(login, modifiedBy);
 
         if (!string.IsNullOrEmpty(retrievedUserDto.error))
-            return new RetrievedIdDTO(Guid.Empty, retrievedUserDto.error);
+            return new RetrievedIdDto(Guid.Empty, retrievedUserDto.error);
         
         return _userRepository.UpdatePassword(retrievedUserDto.user.Id, password, modifiedBy);
     }
     
-    public RetrievedUserDTO GetUserByLogin(string login, string requestedBy)
+    public RetrievedUserDto GetUserByLogin(string login)
     {
-        return TryGetUserWithAccess(login, requestedBy, true);
+        return _userRepository.GetByLogin(login);
     }
 
-    public RetrievedUserDTO GetByLoginAndPassword(string login, string password, string requestedBy)
+    public RetrievedUserDto GetByLoginAndPassword(string login, string password, string requestedBy)
     {
-        return TryGetUserWithAccess(login,  requestedBy, false, password);
+        return TryGetIfRegularUserCanAccessToRequestedUser(login,  requestedBy, false, password);
     }
 
     public List<User> GetActiveUsers()
@@ -75,49 +75,60 @@ public class UserService
         return _userRepository.GetUsersOlderThan(age);
     }
 
-    public RetrievedIdDTO DeleteUserForce(string login)
+    public RetrievedIdDto DeleteUserForce(string login)
     {
-        RetrievedUserDTO retrievedUserDto = _userRepository.GetByLogin(login);
+        RetrievedUserDto retrievedUserDto = _userRepository.GetByLogin(login);
 
         if (!string.IsNullOrEmpty(retrievedUserDto.error))
-            return new RetrievedIdDTO(Guid.Empty, retrievedUserDto.error);
+            return new RetrievedIdDto(Guid.Empty, retrievedUserDto.error);
         
         return _userRepository.DeleteUserForce(retrievedUserDto.user.Id);
     }
 
-    public RetrievedIdDTO DeleteUser(string login, string revokedBy)
+    public RetrievedIdDto DeleteUser(string login, string revokedBy)
     {
-        RetrievedUserDTO retrievedUserDto = _userRepository.GetByLogin(login);
+        RetrievedUserDto retrievedUserDto = _userRepository.GetByLogin(login);
 
         if (!string.IsNullOrEmpty(retrievedUserDto.error))
-            return new RetrievedIdDTO(Guid.Empty, retrievedUserDto.error);
+            return new RetrievedIdDto(Guid.Empty, retrievedUserDto.error);
         
         return _userRepository.DeleteUser(retrievedUserDto.user.Id, revokedBy);
     }
 
-    public RetrievedIdDTO RestoreUser(string login)
+    public RetrievedIdDto RestoreUser(string login)
     {
-        RetrievedUserDTO retrievedUserDto = _userRepository.GetByLogin(login);
+        RetrievedUserDto retrievedUserDto = _userRepository.GetByLogin(login);
 
         if (!string.IsNullOrEmpty(retrievedUserDto.error))
-            return new RetrievedIdDTO(Guid.Empty, retrievedUserDto.error);
+            return new RetrievedIdDto(Guid.Empty, retrievedUserDto.error);
         
         return _userRepository.RestoreUser(retrievedUserDto.user.Id);
     }
 
-    private RetrievedUserDTO TryGetUserWithAccess(string login, string requestedByUserLogin, bool isAdminHaveAccess, string password="")
+    private RetrievedUserDto TryGetIfRegularUserCanAccessToRequestedUser(string login, string requestedByUserLogin, bool isAdminAlsoHaveAccess=true, string password="")
     {
-        RetrievedUserDTO retrievedUserDto;
+        RetrievedUserDto retrievedUserDto;
         
         retrievedUserDto = string.IsNullOrEmpty(password) ? _userRepository.GetByLogin(login) : _userRepository.GetByLoginAndPassword(login, password);
         
         if (!string.IsNullOrEmpty(retrievedUserDto.error))
-            return new RetrievedUserDTO(null,  retrievedUserDto.error);
+            return new RetrievedUserDto(null,  retrievedUserDto.error);
         
         if ((retrievedUserDto.user.Login == requestedByUserLogin && retrievedUserDto.user.RevokedOn == null)
-            || (isAdminHaveAccess && requestedByUserLogin == "admin"))
+            || (isAdminAlsoHaveAccess && CheckIfUserIsAdmin(requestedByUserLogin)))
             return retrievedUserDto;
 
-        return new RetrievedUserDTO(null, ErrorForm.AccessError(login));
+        _logger.LogError(ErrorForm.AccessError(login));
+        return new RetrievedUserDto(null, ErrorForm.AccessError(login));
+    }
+
+    private bool CheckIfUserIsAdmin(string login)
+    {
+        RetrievedUserDto retrievedUserDto = _userRepository.GetByLogin(login);
+
+        if (!string.IsNullOrEmpty(retrievedUserDto.error))
+            return false;
+
+        return retrievedUserDto.user.Admin;
     }
 }

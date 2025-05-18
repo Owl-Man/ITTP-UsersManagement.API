@@ -53,9 +53,6 @@ public class User
     {
         validateError = string.Empty;
         
-        //TODO: Remove temp solution
-        return true;
-        
         if (!Regex.IsMatch(login, @"^[a-zA-Z0-9]+$") || 
             !Regex.IsMatch(password, @"^[a-zA-Z0-9]+$") ||
             !Regex.IsMatch(name, @"^[a-zA-Z0-9]+$"))

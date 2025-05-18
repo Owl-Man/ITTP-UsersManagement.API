@@ -11,10 +11,10 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+string allowAllOrigins = "_allowAllOrigins";
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: MyAllowSpecificOrigins,
+    options.AddPolicy(name: allowAllOrigins,
         policy =>
         {
             policy.AllowAnyOrigin()
@@ -46,6 +46,32 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "UsersManagement.API", Version = "v1" });
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n 
+                      Enter 'Bearer' [space] and then your token in the text input below.
+                      \r\n\r\nExample: 'Bearer 12345abcdef'"
+    });
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Name = "Bearer",
+                In = ParameterLocation.Header,
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new List<string>()
+        }
+    });
 });
     
 ConfigurationManager configuration = builder.Configuration;
@@ -55,7 +81,6 @@ builder.Services.AddDbContext<UsersManagementDbContext>(options =>
 {
     options.UseNpgsql(configuration.GetConnectionString(nameof(UsersManagementDbContext)));
 });
-
 
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -79,7 +104,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors(MyAllowSpecificOrigins);
+app.UseCors(allowAllOrigins);
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

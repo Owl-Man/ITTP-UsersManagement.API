@@ -5,150 +5,148 @@ using ITTP.UsersManagement.API.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace UserManagementApi.Controllers
+namespace ITTP.UsersManagement.API.Controllers;
+
+[Route("[controller]")]
+[ApiController]
+public class UsersController : ControllerBase
 {
-    [Route("[controller]")]
-    [ApiController]
-    public class UsersController : ControllerBase
+    private readonly UserService _userService;
+    private readonly AuthService _authService;
+
+    public UsersController(UserService userService, AuthService authService)
     {
-        private readonly UserService _userService;
-        private readonly AuthService _authService;
+        _userService = userService;
+        _authService = authService;
+    }
 
-        public UsersController(UserService userService, AuthService authService)
+    [HttpPost("auth/login")]
+    public IActionResult Login([FromBody] LoginAndPasswordDto loginAndPasswordDto)
+    {
+        (string token, string error) = _authService.Authenticate(loginAndPasswordDto);
+
+        if (!string.IsNullOrEmpty(error))
         {
-            _userService = userService;
-            _authService = authService;
+            return Unauthorized(new { Error = error });
         }
+            
+        return Ok(new LoginTokenDto(token));
+    }
 
-        [HttpPost("login")]
-        public IActionResult Login([FromBody] UserLoginDto userLoginDto)
-        {
-            (string token, string error) = _authService.Authenticate(userLoginDto);
+    [HttpPost]
+    [Authorize(Roles = "Admin")]
+    public IActionResult CreateUser([FromBody] CreateUserDto createUserDto)
+    {
+        string currentUser = User.Identity.Name;
+            
+        RetrievedIdDto retrievedIdDto = _userService.CreateUser(createUserDto.Login, createUserDto.Password, 
+            createUserDto.Name, createUserDto.Gender, createUserDto.Birthday, createUserDto.Admin, currentUser);
 
-            if (!string.IsNullOrEmpty(error))
-            {
-                return Unauthorized(new { Error = error });
-            }
+        if (!string.IsNullOrEmpty(retrievedIdDto.Error)) return BadRequest(retrievedIdDto.Error);
             
-            return Ok(new { Token = token });
-        }
+        return Ok(new LoginDto(createUserDto.Login));
+    }
 
-        [HttpPost]
-        [Authorize(Roles = "Admin")]
-        public IActionResult CreateUser([FromBody] CreateUserDto dto)
-        {
-            string? currentUser = User.Identity.Name;
+    [HttpPut("{login}/updateUser")]
+    [Authorize]
+    public IActionResult UpdateUser(string login, [FromBody] UserPersonalInfoDto personalInfoDto)
+    {
+        string currentUser = User.Identity.Name;
             
-            RetrievedIdDTO retrievedIdDto = _userService.CreateUser(dto.Login, dto.Password, dto.Name, dto.Gender, dto.Birthday, dto.Admin, currentUser);
+        RetrievedIdDto retrievedIdDto = _userService.UpdatePersonalInfo(login, personalInfoDto.Name, personalInfoDto.Gender, personalInfoDto.Birthday, currentUser);
+            
+        if (!string.IsNullOrEmpty(retrievedIdDto.Error)) return BadRequest(retrievedIdDto.Error);
+            
+        return NoContent();
+    }
 
-            if (!string.IsNullOrEmpty(retrievedIdDto.error)) return BadRequest(retrievedIdDto.error);
+    [HttpPut("{login}/updatePassword")]
+    [Authorize]
+    public IActionResult UpdatePassword(string login, [FromBody] UpdatePasswordDto dto)
+    {
+        string currentUser = User.Identity.Name;
             
-            return Ok(new { login = dto.Login });
-        }
+        RetrievedIdDto retrievedIdDto = _userService.UpdatePassword(login, dto.Password, currentUser);
+        if (!string.IsNullOrEmpty(retrievedIdDto.Error)) return BadRequest(retrievedIdDto.Error);
+            
+        return NoContent();
+    }
 
-        [HttpPut("{login}")]
-        [Authorize]
-        public IActionResult UpdateUser(string login, [FromBody] UserPersonalInfoDto personalInfoDto)
-        {
-            string? currentUser = User.Identity.Name;
+    [HttpPut("{login}/updateLogin")]
+    [Authorize]
+    public IActionResult UpdateLogin(string login, [FromBody] LoginDto dto)
+    {
+        string currentUser = User.Identity.Name;
             
-            RetrievedIdDTO retrievedIdDto = _userService.UpdatePersonalInfo(login, personalInfoDto.Name, personalInfoDto.Gender, personalInfoDto.Birthday, currentUser);
+        RetrievedIdDto retrievedIdDto = _userService.UpdateLogin(login, dto.Login, currentUser);
+        if (!string.IsNullOrEmpty(retrievedIdDto.Error)) return BadRequest(retrievedIdDto.Error);
             
-            if (!string.IsNullOrEmpty(retrievedIdDto.error)) return BadRequest(retrievedIdDto.error);
-            
-            return NoContent();
-        }
+        return NoContent();
+    }
 
-        [HttpPut("{login}/password")]
-        [Authorize]
-        public IActionResult UpdatePassword(string login, [FromBody] UpdatePasswordDto dto)
-        {
-            var currentUser = User.Identity.Name;
+    [HttpGet("getActiveUsers")]
+    [Authorize(Roles = "Admin")]
+    public IActionResult GetActiveUsers()
+    {
+        List<User> users = _userService.GetActiveUsers();
             
-            RetrievedIdDTO retrievedIdDto = _userService.UpdatePassword(login, dto.Password, currentUser);
-            if (!string.IsNullOrEmpty(retrievedIdDto.error)) return BadRequest(retrievedIdDto.error);
-            
-            return NoContent();
-        }
+        return Ok(users);
+    }
 
-        [HttpPut("{login}/login")]
-        [Authorize]
-        public IActionResult UpdateLogin(string login, [FromBody] LoginDto dto)
-        {
-            string? currentUser = User.Identity.Name;
+    [HttpGet("getUserByLogin")]
+    [Authorize(Roles = "Admin")]
+    public IActionResult GetUserByLogin(string login)
+    {
+        RetrievedUserDto retrievedUserDto = _userService.GetUserByLogin(login);
             
-            RetrievedIdDTO retrievedIdDto = _userService.UpdateLogin(login, dto.Login, currentUser);
-            if (!string.IsNullOrEmpty(retrievedIdDto.error)) return BadRequest(retrievedIdDto.error);
-            
-            return NoContent();
-        }
+        if (!string.IsNullOrEmpty(retrievedUserDto.error)) return BadRequest(retrievedUserDto.error);
 
-        [HttpGet]
-        [Authorize(Roles = "Admin")]
-        public IActionResult GetActiveUsers()
-        {
-            List<User> users = _userService.GetActiveUsers();
+        UserPersonalInfoDto userPersonalInfoDto = retrievedUserDto.user.ToUserPersonalInfo();
             
-            return Ok(users);
-        }
+        return Ok(userPersonalInfoDto);
+    }
 
-        [HttpGet("{login}")]
-        [Authorize(Roles = "Admin")]
-        public IActionResult GetUserByLogin(string login)
-        {
-            string? currentUser = User.Identity.Name;
+    [HttpGet("{login}")]
+    [Authorize(Roles = "User")]
+    public IActionResult GetUserByLoginAndPassword(string login, [FromQuery] string password)
+    {
+        string currentUser = User.Identity.Name;
             
-            RetrievedUserDTO retrievedUserDto = _userService.GetUserByLogin(login, currentUser);
+        RetrievedUserDto retrievedUserDto = _userService.GetByLoginAndPassword(login, password, currentUser);
             
-            if (!string.IsNullOrEmpty(retrievedUserDto.error)) return BadRequest(retrievedUserDto.error);
+        if (!string.IsNullOrEmpty(retrievedUserDto.error)) return BadRequest(retrievedUserDto.error);
+            
+        return Ok(retrievedUserDto);
+    }
 
-            UserPersonalInfoDto userPersonalInfoDto = retrievedUserDto.user.ToUserPersonalInfoDto();
-            
-            return Ok(userPersonalInfoDto);
-        }
+    [HttpGet("getUsersOlderThan")]
+    [Authorize(Roles = "Admin")]
+    public IActionResult GetUsersOlderThan(int age)
+    {
+        List<User> users = _userService.GetUsersOlderThan(age);
+        return Ok(users);
+    }
 
-        [HttpGet("{login}/getByLoginAndPassword")]
-        [Authorize(Roles = "User")]
-        public IActionResult GetUserByLoginAndPassword(string login, string password)
-        {
-            string? currentUser = User.Identity.Name;
-            
-            RetrievedUserDTO retrievedUserDto = _userService.GetByLoginAndPassword(login, password, currentUser);
-            
-            if (!string.IsNullOrEmpty(retrievedUserDto.error)) return BadRequest(retrievedUserDto.error);
-            
-            return Ok(retrievedUserDto);
-        }
+    [HttpDelete("{login}")]
+    [Authorize(Roles = "Admin")]
+    public IActionResult DeleteUser(string login, [FromQuery] bool softDelete)
+    {
+        string currentUser = User.Identity.Name;
 
-        [HttpGet("age/{age}")]
-        [Authorize(Roles = "Admin")]
-        public IActionResult GetUsersOlderThan(int age)
-        {
-            var users = _userService.GetUsersOlderThan(age);
-            return Ok(users);
-        }
-
-        [HttpDelete("{login}")]
-        [Authorize(Roles = "Admin")]
-        public IActionResult DeleteUser(string login, bool softDelete)
-        {
-            string? currentUser = User.Identity.Name;
-
-            RetrievedIdDTO retrievedIdDto;
+        RetrievedIdDto retrievedIdDto;
             
-            retrievedIdDto = softDelete ? _userService.DeleteUser(login, currentUser) : _userService.DeleteUserForce(login);
+        retrievedIdDto = softDelete ? _userService.DeleteUser(login, currentUser) : _userService.DeleteUserForce(login);
             
-            if (!string.IsNullOrEmpty(retrievedIdDto.error)) return BadRequest(retrievedIdDto.error);
+        if (!string.IsNullOrEmpty(retrievedIdDto.Error)) return BadRequest(retrievedIdDto.Error);
             
-            return NoContent();
-        }
+        return NoContent();
+    }
 
-        [HttpPut("{login}/restore")]
-        [Authorize(Roles = "Admin")]
-        public IActionResult RestoreUser(string login)
-        {
-            _userService.RestoreUser(login);
-            return NoContent();
-        }
+    [HttpPut("{login}/restore")]
+    [Authorize(Roles = "Admin")]
+    public IActionResult RestoreUser(string login)
+    {
+        _userService.RestoreUser(login);
+        return NoContent();
     }
 }

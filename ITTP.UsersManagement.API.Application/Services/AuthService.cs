@@ -1,10 +1,8 @@
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using ITTP.UsersManagement.API.Core;
 using ITTP.UsersManagement.API.Core.DTOs;
 using ITTP.UsersManagement.API.Core.Interfaces;
-using ITTP.UsersManagement.API.Core.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
@@ -26,9 +24,9 @@ public class AuthService
         expiresTime = TimeSpan.FromMinutes(_configuration.GetValue<int>("JwtSettings:ExpirationInMinutes"));
     }
 
-    public (string token, string error) Authenticate(UserLoginDto userLoginDto)
+    public (string token, string error) Authenticate(LoginAndPasswordDto loginAndPasswordDto)
     {
-        RetrievedUserDTO retrievedUserDto = _userRepository.GetByLoginAndPassword(userLoginDto.Login, userLoginDto.Password);
+        RetrievedUserDto retrievedUserDto = _userRepository.GetByLoginAndPassword(loginAndPasswordDto.Login, loginAndPasswordDto.Password);
         
         if (!string.IsNullOrEmpty(retrievedUserDto.error))
             return (string.Empty, retrievedUserDto.error);

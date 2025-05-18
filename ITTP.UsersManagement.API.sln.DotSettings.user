@@ -33,6 +33,7 @@
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AXunitTestRunner_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003FUsers_003FOwl_003FAppData_003FRoaming_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FSourcesCache_003F7a6f9555e47e5e4b4d3949244ea2e22bb8141caacfb7145f5ccf83e9eae4c6f_003FXunitTestRunner_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c3d5f287_002Dbb52_002D42ed_002D9337_002D35a2df99f289/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="UsersServiceTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::820387E8-D7D5-4D7A-BD44-427E521A0529::net9.0::UserManagementApi.FunctionalTests.UsersControllerTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::820387E8-D7D5-4D7A-BD44-427E521A0529::net9.0::ITTP.UsersManagement.API.FunctionalTests.UsersControllerTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::CC21CFCA-BA6E-48D4-9DC1-1669A7BD2C7C::net9.0::ITTP.UsersManagement.API.IntegrationTests.UsersServiceTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

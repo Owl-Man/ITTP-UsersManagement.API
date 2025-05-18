@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ITTP.UsersManagement.API.DataAccess")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+697fa4fd2fe2cac8b4ebc1bb1b90c93acdd3bf6b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7307a62a0dc971f61d03192b3b1d676084f0b1c7")]
 [assembly: System.Reflection.AssemblyProductAttribute("ITTP.UsersManagement.API.DataAccess")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ITTP.UsersManagement.API.DataAccess")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
